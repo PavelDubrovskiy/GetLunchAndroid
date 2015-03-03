@@ -632,6 +632,11 @@ a{
 	margin: 0 8px;
 }
 
+.b_cards_main-info + .b_btn_row,
+.b_cards_lunches + .b_btn_row{
+	margin-top: 20px;
+}
+
 /* $b_upic */
 .b_upic{
 	display: block;

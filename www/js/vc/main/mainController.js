@@ -200,6 +200,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	function searchHandler(){
 		if($('.p_main_search_input').val()!=''){
 			searchInput=$('.p_main_search_input').val();
+			app.GAEvent('search', 'handler', searchInput);
 			var filter=JSON.parse(localStorage.getItem('filter'));
 			var values={source:app.config.source, map:map, address:searchInput, filter:filter, latitude:app.latitude, longitude:app.longitude};
 			var msg=api.getLunchByAddress(values);
