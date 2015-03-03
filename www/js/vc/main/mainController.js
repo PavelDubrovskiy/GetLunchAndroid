@@ -54,6 +54,68 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			element: '#submitFilter',
 			event: 'click',
 			handler: submitFilter,
+		},
+		
+		//GoogleAnalitics
+		{
+			element: '#searchMainPopupIcon',
+			event: 'click',
+			handler: function(){app.GAEvent('search', 'click', 'start')}
+		},
+		{
+			element: '#filterMainPopupIcon',
+			event: 'click',
+			handler: function(){app.GAEvent('filter', 'click', 'start')}
+		},
+		{
+			element: '#filterCancelButton',
+			event: 'click',
+			handler: function(){app.GAEvent('filter', 'cancel', '1')}
+		},
+		{
+			element: '#filterSendButton',
+			event: 'click',
+			handler: function(){app.GAEvent('filter', 'send', '1')}
+		},
+		{
+			element: '#filterLunchfromInput',
+			event: 'click',
+			handler: function(){app.GAEvent('filter', 'click', 'time_begin')}
+		},
+		{
+			element: '#filterLunchtoInput',
+			event: 'click',
+			handler: function(){app.GAEvent('filter', 'click', 'time_end')}
+		},
+		{
+			element: '#filterPricefromInput',
+			event: 'click',
+			handler: function(){app.GAEvent('filter', 'click', 'price_from')}
+		},
+		{
+			element: '#filterPricetoInput',
+			event: 'click',
+			handler: function(){app.GAEvent('filter', 'click', 'price_to')}
+		},
+		{
+			element: '#filterVegetarianCheckbox',
+			event: 'click',
+			handler: function(){app.GAEvent('filter', 'click', 'vegetarian')}
+		},
+		{
+			element: '#filterWiFiCheckbox',  
+			event: 'click',
+			handler: function(){app.GAEvent('filter', 'click', 'wifi')}
+		},
+		{
+			element: '#filterParkingCheckbox',
+			event: 'click',
+			handler: function(){app.GAEvent('filter', 'click', 'parking')}
+		},
+		{
+			element: '#filterTerracaCheckbox',
+			event: 'click',
+			handler: function(){app.GAEvent('filter', 'click', 'terraca')}
 		}
 	];
 	
@@ -97,9 +159,19 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				handler: map.zoomIn.bind(map)
 			},
 			{
+				element: '.b_map_btn.m_zoomin',
+				event: 'click',
+				handler: function(){app.GAEvent('map', 'click', 'plus')}
+			},
+			{
 				element: '.b_map_btn.m_zoomout',
 				event: 'click',
 				handler: map.zoomOut.bind(map)
+			},
+			{
+				element: '.b_map_btn.m_zoomout',
+				event: 'click',
+				handler: function(){app.GAEvent('map', 'click', 'minus')}
 			},
 			{
 				element: '.b_map_btn.m_geolocation',
@@ -107,10 +179,15 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				handler: geolocation
 			},
 			{
+				element: '.b_map_btn.m_geolocation',
+				event: 'click',
+				handler: function(){app.GAEvent('map', 'click', 'arrow')}
+			},
+			{
 				element: '.b_map_btn.m_findme',
 				event: 'click',
 				handler: findMe
-			}
+			}			
 		);
 		
 		map.map.events.add('dblclick', function(e){
@@ -181,6 +258,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	
 	// Найти меня
 	function findMe() {
+		app.GAEvent('map', 'click', 'target');
 		map.setUserPosition([app.latitude, app.longitude], true);
 		if(map.map.getZoom() < minZoom) {
 			map.map.setZoom(minZoom+1);

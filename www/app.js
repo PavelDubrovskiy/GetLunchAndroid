@@ -160,6 +160,7 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 	}
 	var GAPage = function(page) {
 		var page=page || 'unknown';
+		//console.log(page);
 		try{
 			gaPlugin.trackPage( function(){}, function(){}, page);
 		}catch(e){}
@@ -168,6 +169,7 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 		var page=page || 'unknown page';
 		var action=action || 'unknown action';
 		var event=event || 'unknown event';
+		//console.log(page+', '+action+', '+event);
 		try{
 			gaPlugin.trackEvent( function(){}, function(){}, page, action, event, 1);
 		}catch(e){}
