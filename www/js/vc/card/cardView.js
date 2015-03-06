@@ -18,7 +18,7 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		}else if(lunchPos.longitude<myPos.longitude && lunchPos.latitude<=myPos.latitude){
 			degrees=180+(Math.acos(((myPos.latitude-lunchPos.latitude)*10000*11.12)/metres))*180/Math.PI;
 		}*/
-		
+		if(params.card.files.length==0)params.card.files=false;
 		html=compiledTemplate(params.card);
 		$('#lunchPage').html(html);
 		utilities.bindEvents(params.bindings);
