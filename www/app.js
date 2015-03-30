@@ -71,9 +71,11 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 					data: data,
 					success: function(msg){
 						if(msg!='error'){
+							LoginUser();
 							user.setValues(JSON.parse(msg));
 							ymaps.ready(function () {
-								mainView.loadPage('main.html');
+								//mainView.loadPage('main.html');
+								$('.back').click();
 							});
 						}else{
 							forms.showMessage('Ошибка аутентификации', "error");
@@ -121,9 +123,11 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 					success: function(msg){
 						console.log(msg);
 						if(msg!='"error"'){
+							LoginUser();
 							user.setValues(JSON.parse(msg));
 							ymaps.ready(function () {
-								mainView.loadPage('main.html');
+								//mainView.loadPage('main.html');
+								$('.back').click();
 							});
 						}else{
 							forms.showMessage('Ошибка аутентификации', "error");
@@ -174,6 +178,15 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 			gaPlugin.trackEvent( function(){}, function(){}, page, action, event, 1);
 		}catch(e){}
 	}
+	var LoginUser = function() {
+		try{
+			$('.app_exit span').text('Выход');
+			$('.app_exit i').removeClass('icon-enter').addClass('icon-exit');
+			$('.app_profile').show();
+			$('.addreviewBtn').attr('href','addreview.html');
+			$('.checkinBtn').attr('href','checkin.html');
+		}catch(e){}
+	}
 	return {
 		f7: f7,
 		mainView: mainView,
@@ -196,7 +209,8 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 		LogoutVK:LogoutVK,
 		tryConnection:tryConnection,
 		GAPage:GAPage,
-		GAEvent:GAEvent
+		GAEvent:GAEvent,
+		LoginUser:LoginUser
 	};
 });
 

@@ -23,6 +23,14 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 		$('#lunchPage').html(html);
 		utilities.bindEvents(params.bindings);
 		
+		$('.addreviewBtn, .checkinBtn').click( function(e) {
+			if($(e.target).hasClass('checkinBtn')) {
+				localStorage.setItem('soughtUrl', 'checkin.html');
+			}else {
+				localStorage.setItem('soughtUrl', 'addreview.html');
+			}
+		});
+		
 		$('.b_underground').each( function() {
 			var $this = $(this)
 				$prev = $this.prev();
@@ -31,7 +39,14 @@ define(["app", "js/utilities/common"], function( app, utilities ) {
 				$prev.addClass('m_connect').text('');
 			}
 		});
-		
+		var user=JSON.parse(localStorage.getItem('User'));
+		if(user){
+			$('.addreviewBtn').attr('href','addreview.html');
+			$('.checkinBtn').attr('href','checkin.html');
+		}else{
+			$('.addreviewBtn').attr('href','authorization.html');
+			$('.checkinBtn').attr('href','authorization.html');
+		}
 		// Крутим компас
 		/*var i = 0;		
 		if( !interval ) {
