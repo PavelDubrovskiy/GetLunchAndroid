@@ -71,9 +71,11 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 					data: data,
 					success: function(msg){
 						if(msg!='error'){
+							LoginUser();
 							user.setValues(JSON.parse(msg));
 							ymaps.ready(function () {
-								mainView.loadPage('main.html');
+								//mainView.loadPage('main.html');
+								$('.back').click();
 							});
 						}else{
 							forms.showMessage('Ошибка аутентификации', "error");
@@ -121,9 +123,11 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 					success: function(msg){
 						console.log(msg);
 						if(msg!='"error"'){
+							LoginUser();
 							user.setValues(JSON.parse(msg));
 							ymaps.ready(function () {
-								mainView.loadPage('main.html');
+								//mainView.loadPage('main.html');
+								$('.back').click();
 							});
 						}else{
 							forms.showMessage('Ошибка аутентификации', "error");
@@ -160,8 +164,28 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 	}
 	var GAPage = function(page) {
 		var page=page || 'unknown';
-		alert(page);
-		gaPlugin.trackPage( function(){}, function(){}, page);
+		//console.log(page);
+		try{
+			gaPlugin.trackPage( function(){}, function(){}, page);
+		}catch(e){}
+	}
+	var GAEvent = function(page,action,event) {
+		var page=page || 'unknown page';
+		var action=action || 'unknown action';
+		var event=event || 'unknown event';
+		//console.log(page+', '+action+', '+event);
+		try{
+			gaPlugin.trackEvent( function(){}, function(){}, page, action, event, 1);
+		}catch(e){}
+	}
+	var LoginUser = function() {
+		try{
+			$('.app_exit span').text('Выход');
+			$('.app_exit i').removeClass('icon-enter').addClass('icon-exit');
+			$('.app_profile').show();
+			$('.addreviewBtn').attr('href','addreview.html');
+			$('.checkinBtn').attr('href','checkin.html');
+		}catch(e){}
 	}
 	return {
 		f7: f7,
@@ -184,7 +208,9 @@ define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
 		LoginVK:LoginVK,
 		LogoutVK:LogoutVK,
 		tryConnection:tryConnection,
-		GAPage:GAPage
+		GAPage:GAPage,
+		GAEvent:GAEvent,
+		LoginUser:LoginUser
 	};
 });
 

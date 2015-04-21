@@ -1,2 +1,2 @@
-D:\GITHUB\getLunch\platforms\android\CordovaLib\bin\AndroidManifest.xml : \
-D:\GITHUB\getLunch\platforms\android\CordovaLib\AndroidManifest.xml \
+D:\GITHUB\GetLunchAndroid\platforms\android\CordovaLib\bin\AndroidManifest.xml : \
+D:\GITHUB\GetLunchAndroid\platforms\android\CordovaLib\AndroidManifest.xml \

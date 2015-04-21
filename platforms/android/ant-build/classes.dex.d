@@ -67,6 +67,7 @@ D:\GITHUB\GetLunchAndroid\platforms\android\ant-build\classes\org\xwalk\core\R$s
 D:\GITHUB\GetLunchAndroid\platforms\android\ant-build\classes\org\xwalk\core\R.class \
 D:\GITHUB\GetLunchAndroid\platforms\android\ant-build\classes\ru\one_touch\getlunch\BuildConfig.class \
 D:\GITHUB\GetLunchAndroid\platforms\android\ant-build\classes\ru\one_touch\getlunch\CordovaApp.class \
+D:\GITHUB\GetLunchAndroid\platforms\android\ant-build\classes\ru\one_touch\getlunch\GetLunch.class \
 D:\GITHUB\GetLunchAndroid\platforms\android\ant-build\classes\ru\one_touch\getlunch\Manifest$permission.class \
 D:\GITHUB\GetLunchAndroid\platforms\android\ant-build\classes\ru\one_touch\getlunch\Manifest.class \
 D:\GITHUB\GetLunchAndroid\platforms\android\ant-build\classes\ru\one_touch\getlunch\R$array.class \
