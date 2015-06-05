@@ -186,7 +186,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				element: '.b_map_btn.m_findme',
 				event: 'click',
 				handler: findMe
-			}			
+			}
 		);
 		
 		map.map.events.add('dblclick', function(e){
@@ -207,8 +207,12 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
 		var itemList={};
+		
 		//getLunchBySquareCoords();
-		map.boundsChange(function(){userPosition=false;getLunchBySquareCoords();});
+		map.boundsChange(function() {
+			userPosition = false;
+			getLunchBySquareCoords();
+		});
 		geolocation();
 		//setTimeout(getNearestLunches, 400);
 		//setTimeout(getLunchBySquareCoords, 400);

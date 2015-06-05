@@ -1,37 +1,42 @@
-define(["app", "moment"], function(app, moment) {
+define(["app", "js/utilities/picker"], function(app, picker) {
 	var $ = Framework7.$;
 	
 	function init(query) {
-		var $input = $('#reminderTime'),
-			$prompt = $('.b_reminder_prompt');
-		//var time = moment().format('HH:mm:ss'); 
-		//console.log(time);
-		if( !$input.val() ){
-			//$input.val(time);
-			$input.focus();
-			$prompt.show();
-		}else{
-			$prompt.remove();
-		}
+		var $input = $('#reminderTime');
 		
-		$prompt.on('click', function() {
-			$input.focus();
-			$prompt.hide().remove();
-		});
-		$input.on('change', function() {
-			if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
-				$.ajax({
-					type: "POST",
-					async: false,
-					url: app.config.source+"/api/pullGCM/",
-					data: 'code='+pushNotificationGCMId+'&utime='+$input.val(),
-					success: function(msg){
-						alert(msg);
-					}
-				});
-			}else {
-				//ios api here
-			}
+		var timePicker = picker.createTimePicker('#reminderTime', '#reminderPicker', {
+			minuteStep: 5
+		});	
+		
+		$('.p_reminder_submit').on('click', function() {
+			try{
+				console.log($input.val());
+				var data='utime='+$input.val()+'&urepeat='+$('#urepeat').val();
+				var user=JSON.parse(localStorage.getItem('User'));
+				if(user)data+='&iuser='+user.id;
+				if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
+					data+='&code='+pushNotificationGCMId;
+					$.ajax({
+						type: "POST",
+						async: false,
+						url: app.config.source+"/api/pullGCM/",
+						data: data,
+						success: function(msg){
+							alert(msg);
+						}
+					});
+				}else {
+					$.ajax({
+						type: "POST",
+						async: false,
+						url: app.config.source+"/api/pulliOS/",
+						data: 'code='+pushNotificationGCMId+'&utime='+$input.val(),
+						success: function(msg){
+							alert(msg);
+						}
+					});
+				}
+			}catch(e){}
 		});
 	}
 	

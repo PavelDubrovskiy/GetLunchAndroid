@@ -60,6 +60,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		lunch.metres=getDistance();		
 		lunch.mainSource=app.config.source;
 		externalSite=lunch.site;
+		
 		view.render({
 			bindings: bindings,
 			card:lunch
@@ -85,7 +86,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			view.expandMap(map);
 		}
 		
-		initMap(lunch);
+		initMap();
 		
 		gallery = new Gallery({wrapper: '.b_gallery', items: 'a'});
 		//window.clearInterval(app.intervalCompass);

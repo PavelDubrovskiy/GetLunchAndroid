@@ -8,7 +8,7 @@
 	<title>GetLunch</title>
 	<link rel="stylesheet" href="css/fonts/fonts.css">
 	<link rel="stylesheet" href="css/icons/icons.css">
-	<link rel="stylesheet" href="lib/css/framework7.css">
+	<link rel="stylesheet" href="css/lib/framework7.min.css">
 	<link rel="stylesheet" href="css/app.css">
 </head>
 <body onload="onLoad()">
@@ -205,10 +205,10 @@
 	<div class="popup-overlay"></div>
 	
 	<div class="views">
-		<div class="view view-main hidden-navbar">
+		<div class="view view-main">
 			
 			<!-- НАВИГАЦИОННАЯ ПАНЕЛЬ -->
-			<div class="navbar">
+			<div class="navbar navbar-hidden">
 				<div class="navbar-inner">
 				</div>
 			</div>
@@ -251,8 +251,9 @@
 	        	gaPlugin = window.plugins.gaPlugin;
 				gaPlugin.init(function(){}, function(){}, "UA-59280392-1", 60);
 			}catch(e){}
-			pushNotification = window.plugins.pushNotification;
+			
 			try{
+				pushNotification = window.plugins.pushNotification;
 				if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
 				    pushNotification.register(
 					    function(result){console.log(result);},
@@ -274,23 +275,24 @@
 				    	}
 				    );
 				}
-			}catch(e){
-				alert(e);
-			}
+			}catch(e){}
 			
 			var f7 = document.createElement('script'),
 				ymaps = document.createElement('script'),
 				requirejs = document.createElement('script')
 			;
 
-			f7.src = 'lib/framework7.js';
+			f7.src = 'js/lib/framework7.min.js';
 			ymaps.src = 'http://api-maps.yandex.ru/2.1.16/?lang=ru_RU';
 			requirejs.src = 'lib/require.js';
 			requirejs.setAttribute('data-main','app');
 			
 			f7.onload = function(){
 				document.body.appendChild(ymaps);
-				document.body.appendChild(requirejs);
+				
+				ymaps.onload = function() {
+					document.body.appendChild(requirejs);
+				}
 			};
 
 			document.body.appendChild(f7);
