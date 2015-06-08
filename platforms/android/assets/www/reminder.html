@@ -9,6 +9,9 @@
 			Напоминание
 		</div>
 		<div class="right sliding">
+			<a href="#" class="link p_reminder_submit">
+				<span>Готово</span>
+			</a>
 		</div>
 	</div>
 </div>
@@ -17,9 +20,9 @@
 	
 		<div class="page-content">
 			<!--<div class="content-block-title">Время напоминания</div>-->
-			<div class="b_invite_datetime b_reminder list-block">
-				<input type="time" id="reminderTime">
-				<a href="#" class="b_reminder_prompt">Выбрать время</a>
+			<div class="b_reminder list-block">
+				<input type="time" id="reminderTime" style="display:none;">
+				<div class="b_reminder_picker" id="reminderPicker"></div>
 			</div>
 			<div class="list-block">
 				<ul>
@@ -27,7 +30,7 @@
 					<li>
 						<a href="#" class="item-link smart-select">
 							<!-- select -->
-							<select name="repeat">
+							<select name="repeat" id="urepeat">
 								<option value="0" selected>Никогда</option>
 								<option value="1">Каждый день</option>
 								<option value="7">Каждую неделю</option>

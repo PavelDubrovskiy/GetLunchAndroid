@@ -1,6 +1,13 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/com.adobe.plugins.GAPlugin/www/GAPlugin.js",
+        "id": "com.adobe.plugins.GAPlugin.GAPlugin",
+        "clobbers": [
+            "GAPlugin"
+        ]
+    },
+    {
         "file": "plugins/nl.x-services.plugins.socialsharing/www/SocialSharing.js",
         "id": "nl.x-services.plugins.socialsharing.SocialSharing",
         "clobbers": [
@@ -8,134 +15,132 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.contacts/www/contacts.js",
-        "id": "org.apache.cordova.contacts.contacts",
+        "file": "plugins/cordova-plugin-contacts/www/contacts.js",
+        "id": "cordova-plugin-contacts.contacts",
         "clobbers": [
             "navigator.contacts"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.contacts/www/Contact.js",
-        "id": "org.apache.cordova.contacts.Contact",
+        "file": "plugins/cordova-plugin-contacts/www/Contact.js",
+        "id": "cordova-plugin-contacts.Contact",
         "clobbers": [
             "Contact"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.contacts/www/ContactAddress.js",
-        "id": "org.apache.cordova.contacts.ContactAddress",
+        "file": "plugins/cordova-plugin-contacts/www/ContactAddress.js",
+        "id": "cordova-plugin-contacts.ContactAddress",
         "clobbers": [
             "ContactAddress"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.contacts/www/ContactError.js",
-        "id": "org.apache.cordova.contacts.ContactError",
+        "file": "plugins/cordova-plugin-contacts/www/ContactError.js",
+        "id": "cordova-plugin-contacts.ContactError",
         "clobbers": [
             "ContactError"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.contacts/www/ContactField.js",
-        "id": "org.apache.cordova.contacts.ContactField",
+        "file": "plugins/cordova-plugin-contacts/www/ContactField.js",
+        "id": "cordova-plugin-contacts.ContactField",
         "clobbers": [
             "ContactField"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.contacts/www/ContactFindOptions.js",
-        "id": "org.apache.cordova.contacts.ContactFindOptions",
+        "file": "plugins/cordova-plugin-contacts/www/ContactFindOptions.js",
+        "id": "cordova-plugin-contacts.ContactFindOptions",
         "clobbers": [
             "ContactFindOptions"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.contacts/www/ContactName.js",
-        "id": "org.apache.cordova.contacts.ContactName",
+        "file": "plugins/cordova-plugin-contacts/www/ContactName.js",
+        "id": "cordova-plugin-contacts.ContactName",
         "clobbers": [
             "ContactName"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.contacts/www/ContactOrganization.js",
-        "id": "org.apache.cordova.contacts.ContactOrganization",
+        "file": "plugins/cordova-plugin-contacts/www/ContactOrganization.js",
+        "id": "cordova-plugin-contacts.ContactOrganization",
         "clobbers": [
             "ContactOrganization"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.contacts/www/ContactFieldType.js",
-        "id": "org.apache.cordova.contacts.ContactFieldType"
+        "file": "plugins/cordova-plugin-contacts/www/ContactFieldType.js",
+        "id": "cordova-plugin-contacts.ContactFieldType",
+        "merges": [
+            ""
+        ]
     },
     {
-        "file": "plugins/org.apache.cordova.device/www/device.js",
-        "id": "org.apache.cordova.device.device",
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "id": "cordova-plugin-device.device",
         "clobbers": [
             "device"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.device-motion/www/Acceleration.js",
-        "id": "org.apache.cordova.device-motion.Acceleration",
+        "file": "plugins/cordova-plugin-device-motion/www/Acceleration.js",
+        "id": "cordova-plugin-device-motion.Acceleration",
         "clobbers": [
             "Acceleration"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.device-motion/www/accelerometer.js",
-        "id": "org.apache.cordova.device-motion.accelerometer",
+        "file": "plugins/cordova-plugin-device-motion/www/accelerometer.js",
+        "id": "cordova-plugin-device-motion.accelerometer",
         "clobbers": [
             "navigator.accelerometer"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.device-orientation/www/CompassError.js",
-        "id": "org.apache.cordova.device-orientation.CompassError",
+        "file": "plugins/cordova-plugin-device-orientation/www/CompassError.js",
+        "id": "cordova-plugin-device-orientation.CompassError",
         "clobbers": [
             "CompassError"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.device-orientation/www/CompassHeading.js",
-        "id": "org.apache.cordova.device-orientation.CompassHeading",
+        "file": "plugins/cordova-plugin-device-orientation/www/CompassHeading.js",
+        "id": "cordova-plugin-device-orientation.CompassHeading",
         "clobbers": [
             "CompassHeading"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.device-orientation/www/compass.js",
-        "id": "org.apache.cordova.device-orientation.compass",
+        "file": "plugins/cordova-plugin-device-orientation/www/compass.js",
+        "id": "cordova-plugin-device-orientation.compass",
         "clobbers": [
             "navigator.compass"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.inappbrowser/www/inappbrowser.js",
-        "id": "org.apache.cordova.inappbrowser.inappbrowser",
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
         "clobbers": [
+            "cordova.InAppBrowser.open",
             "window.open"
-        ]
-    },
-    {
-        "file": "plugins/com.adobe.plugins.GAPlugin/www/GAPlugin.js",
-        "id": "com.adobe.plugins.GAPlugin.GAPlugin",
-        "clobbers": [
-            "GAPlugin"
         ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "com.adobe.plugins.GAPlugin": "2.4.0",
     "nl.x-services.plugins.socialsharing": "4.3.10",
-    "org.apache.cordova.console": "0.2.9",
-    "org.apache.cordova.contacts": "0.2.12",
-    "org.apache.cordova.device": "0.2.13",
-    "org.apache.cordova.device-motion": "0.2.8",
-    "org.apache.cordova.device-orientation": "0.3.7",
-    "org.apache.cordova.geolocation": "0.3.11",
-    "org.apache.cordova.inappbrowser": "0.5.2",
-    "com.adobe.plugins.GAPlugin": "2.4.0"
+    "cordova-plugin-console": "1.0.0",
+    "cordova-plugin-contacts": "1.0.0",
+    "cordova-plugin-device": "1.0.0",
+    "cordova-plugin-device-motion": "1.1.0",
+    "cordova-plugin-device-orientation": "1.0.0",
+    "cordova-plugin-geolocation": "1.0.0",
+    "cordova-plugin-inappbrowser": "1.0.0",
+    "cordova-plugin-crosswalk-webview": "1.2.0"
 }
 // BOTTOM OF METADATA
 });

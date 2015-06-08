@@ -11,24 +11,16 @@ paths: {
 	}
 });*/
 
-require.config({
-    paths: {
-        "moment": "lib/moment.min"
-    },
-    config: {
-        moment: {
-            noGlobal: true
-        }
-    }
-});
-
-define('app', ['js/router', 'js/m/user', 'moment'], function(Router, User) {
+define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	Router.init();
 	var $ = Framework7.$;
 	var user = new User();
 	var f7 = new Framework7({
 		modalTitle: ' ',
 		swipeBackPage: false,
+		panelsCloseByOutside: true,
+		swipePanel: "left",
+		
 		pushState: true,
 		swipeout: false,
 		sortable: false,

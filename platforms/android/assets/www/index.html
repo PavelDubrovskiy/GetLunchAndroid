@@ -8,7 +8,7 @@
 	<title>GetLunch</title>
 	<link rel="stylesheet" href="css/fonts/fonts.css">
 	<link rel="stylesheet" href="css/icons/icons.css">
-	<link rel="stylesheet" href="lib/css/framework7.css">
+	<link rel="stylesheet" href="css/lib/framework7.min.css">
 	<link rel="stylesheet" href="css/app.css">
 </head>
 <body onload="onLoad()">
@@ -22,10 +22,10 @@
 			Поесть
 		</a>
 		
-		<!--<a class="b_sidebar_item close-panel" href="reminder.html">
+		<a class="b_sidebar_item close-panel" href="reminder.html">
 			<i class="icon icon-sidebar-bell"></i>
 			Напоминание
-		</a>-->
+		</a>
 		
 		<!--<a class="b_sidebar_item close-panel" href="favourite.html">
 			<i class="icon icon-sidebar-star"></i>
@@ -205,10 +205,10 @@
 	<div class="popup-overlay"></div>
 	
 	<div class="views">
-		<div class="view view-main hidden-navbar">
+		<div class="view view-main">
 			
 			<!-- НАВИГАЦИОННАЯ ПАНЕЛЬ -->
-			<div class="navbar">
+			<div class="navbar navbar-hidden">
 				<div class="navbar-inner">
 				</div>
 			</div>
@@ -243,25 +243,56 @@
 <script type="text/javascript" src="cordova.js"></script>
 <script>
 	var gaPlugin;
+	var pushNotification;
+	var pushNotificationGCMId;
 	function onLoad() {
         document.addEventListener("deviceready", function(){
 	        try{
 	        	gaPlugin = window.plugins.gaPlugin;
 				gaPlugin.init(function(){}, function(){}, "UA-59280392-1", 60);
 			}catch(e){}
+			
+			try{
+				pushNotification = window.plugins.pushNotification;
+				if ( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
+				    pushNotification.register(
+					    function(result){console.log(result);},
+					    function(error){console.log(error);},
+					    {
+					        "senderID":"161760286952",
+					        "ecb":"onNotification"
+					    }
+				    );
+				}else {
+				    pushNotification.register(
+				    	function(token){console.log(token);},
+				    	function(error){console.log(error);},
+				    	{
+					        "badge":"true",
+					        "sound":"true",
+					        "alert":"true",
+					        "ecb":"onNotificationAPN"
+				    	}
+				    );
+				}
+			}catch(e){}
+			
 			var f7 = document.createElement('script'),
 				ymaps = document.createElement('script'),
 				requirejs = document.createElement('script')
 			;
 
-			f7.src = 'lib/framework7.js';
+			f7.src = 'js/lib/framework7.min.js';
 			ymaps.src = 'http://api-maps.yandex.ru/2.1.16/?lang=ru_RU';
 			requirejs.src = 'lib/require.js';
 			requirejs.setAttribute('data-main','app');
 			
 			f7.onload = function(){
 				document.body.appendChild(ymaps);
-				document.body.appendChild(requirejs);
+				
+				ymaps.onload = function() {
+					document.body.appendChild(requirejs);
+				}
 			};
 
 			document.body.appendChild(f7);
@@ -274,6 +305,57 @@
 			document.dispatchEvent(event);
 	    }
     }
+    function onNotification(e) {
+	    switch( e.event ){
+		    case 'registered':
+		        if ( e.regid.length > 0 )
+		        {
+		            alert("regID = " + e.regid);
+		            pushNotificationGCMId=e.regid;
+		        }
+		    break;
+		
+		    case 'message':
+		        // if this flag is set, this notification happened while we were in the foreground.
+		        // you might want to play a sound to get the user's attention, throw up a dialog, etc.
+		        if ( e.foreground )
+		        {
+		            /*$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+		
+		            // on Android soundname is outside the payload.
+		            // On Amazon FireOS all custom attributes are contained within payload
+		            var soundfile = e.soundname || e.payload.sound;
+		            // if the notification contains a soundname, play it.
+		            var my_media = new Media("/android_asset/www/"+ soundfile);
+		            my_media.play();*/
+		        }
+		        else
+		        {  // otherwise we were launched because the user touched a notification in the notification tray.
+		            if ( e.coldstart )
+		            {
+		                alert('<li>--COLDSTART NOTIFICATION--' + '</li>');
+		            }
+		            else
+		            {
+		                alert('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+		            }
+		        }
+		      alert('MESSAGE -> MSG: ' + e.payload.message);
+		           //Only works for GCM
+		      alert('MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
+		       //Only works on Amazon Fire OS
+		       alert('MESSAGE -> TIME: ' + e.payload.timeStamp );
+		    break;
+		
+		    case 'error':
+		       alert('<li>ERROR -> MSG:' + e.msg + '</li>');
+		    break;
+		
+		    default:
+		        alert('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
+		    break;
+		}
+	}
 </script>
 <!--<script type="text/javascript" src="lib/framework7.js"></script>
 <script src="http://api-maps.yandex.ru/2.1.16/?lang=ru_RU&load=Map,geoObject.addon.balloon,Placemark,GeoObjectCollection,templateLayoutFactory" type="text/javascript"></script>

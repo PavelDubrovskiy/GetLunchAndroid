@@ -1,4 +1,4 @@
-define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/], function(app, view/*, invite*/) {
+define(["app","js/vc/invite_submit/invite_submitView", "js/utilities/picker"/*,"js/utilities/invite"*/], function(app, view, picker/*, invite*/) {
 	var $ = Framework7.$;
 	var lunch ={};
 	var header, date, bottom;
@@ -22,18 +22,29 @@ define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/]
 
 	function init(query) {
 		//invite.fillSelectedContent();
-		lunch=JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
+		lunch = JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
 		app.GAPage('/restaurant/'+lunch.name+'/'+lunch.id+'/callfriends/');
-		//console.log(lunch);
-		header='Приглашаю на ланч в заведение: '+lunch.name+"\n";
-		date="Сегодня в 13:00 \n";
-		bottom='По адресу: '+lunch.address+"\n";
-		bottom+='Подробнее тут: '+app.config.source+'/restaurant/'+lunch.id+'/';
-		$('#invitation').val(header+date+bottom);
+		
+		var dateTimePicker = picker.createDateTimePicker('#inviteDatetime', '#invitePicker', {
+			daysCount: 14,
+			minTime: lunch.lunchfromStr,
+			maxTime: lunch.lunchtoStr,
+			minuteStep: 5,
+			initTime: lunch.lunchfromStr,
+			checkTime: true
+		});
+		
 		view.render({
 			bindings: bindings
 		});
+		
+		header = 'Приглашаю на ланч в заведение: ' + lunch.name + "\n";
+		date = $('#inviteDatetime').val() + '\n';
+		bottom = 'По адресу: ' + lunch.address + "\n";
+		bottom += 'Подробнее тут: ' + app.config.source + '/restaurant/' + lunch.id + '/';
+		$('#invitation').val(header + date + bottom);
 	}
+	
 	function shareMe() {
 		var text=$('#invitation').val();
 		text+="\n\nGetLunch.ru";
@@ -47,19 +58,10 @@ define(["app","js/vc/invite_submit/invite_submitView"/*,"js/utilities/invite"*/]
 			console.log(text+' '+subject+' '+logo+' '+url);
 		}
 	}
+	
 	function setTime() {
-		var time=$('#inviteDatetime').val();
-		var ndate=new Date();
-		var d=ndate.getDate();
-		d=d>9?d:'0'+d;
-		var m=ndate.getMonth()*1+1;
-		if(time.substr(0,10)==ndate.getFullYear()+'-'+m+'-'+d){
-			date='Сегодня в ';
-		}else{
-			date=time.substr(8,2)+'.'+time.substr(5,2)+'.'+time.substr(0,4)+' в ';
-		}
-		date+=time.substr(11,2)+':'+time.substr(14,2)+"\n";
-		$('#invitation').val(header+date+bottom);
+		date = $('#inviteDatetime').val() + '\n';
+		$('#invitation').val(header + date + bottom);
 	}
 	return {
 		init: init

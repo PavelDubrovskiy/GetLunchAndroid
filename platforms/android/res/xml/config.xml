@@ -1,6 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="21414104" id="ru.one-touch.getlunch" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="11414106" id="ru.one-touch.getlunch" version="1.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
+    <feature name="GAPlugin">
+        <param name="android-package" value="com.adobe.plugins.GAPlugin" />
+    </feature>
     <feature name="SocialSharing">
         <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
     </feature>
@@ -19,9 +22,7 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
-    <feature name="GAPlugin">
-        <param name="android-package" value="com.adobe.plugins.GAPlugin" />
-    </feature>
+    <preference name="webView" value="org.crosswalk.engine.XWalkWebViewEngine" />
     <name>GetLunch</name>
     <description>
         GetLunch - application for search lunch
