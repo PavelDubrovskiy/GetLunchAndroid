@@ -8,13 +8,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/nl.x-services.plugins.socialsharing/www/SocialSharing.js",
-        "id": "nl.x-services.plugins.socialsharing.SocialSharing",
-        "clobbers": [
-            "window.plugins.socialsharing"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-contacts/www/contacts.js",
         "id": "cordova-plugin-contacts.contacts",
         "clobbers": [
@@ -126,21 +119,34 @@ module.exports = [
             "cordova.InAppBrowser.open",
             "window.open"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+        "id": "cordova-plugin-whitelist.whitelist",
+        "runs": true
+    },
+    {
+        "file": "plugins/nl.x-services.plugins.socialsharing/www/SocialSharing.js",
+        "id": "nl.x-services.plugins.socialsharing.SocialSharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "com.adobe.plugins.GAPlugin": "2.4.0",
-    "nl.x-services.plugins.socialsharing": "4.3.10",
     "cordova-plugin-console": "1.0.0",
     "cordova-plugin-contacts": "1.0.0",
+    "cordova-plugin-crosswalk-webview": "1.2.0",
     "cordova-plugin-device": "1.0.0",
     "cordova-plugin-device-motion": "1.1.0",
     "cordova-plugin-device-orientation": "1.0.0",
     "cordova-plugin-geolocation": "1.0.0",
     "cordova-plugin-inappbrowser": "1.0.0",
-    "cordova-plugin-crosswalk-webview": "1.2.0"
+    "cordova-plugin-whitelist": "1.0.0",
+    "nl.x-services.plugins.socialsharing": "4.3.10"
 }
 // BOTTOM OF METADATA
 });
