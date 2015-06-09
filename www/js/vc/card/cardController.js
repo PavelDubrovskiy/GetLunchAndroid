@@ -104,6 +104,9 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
 		
+		map.objectManager.events.add('mouseenter', app.disablePanel);
+		map.objectManager.events.add('mouseleave', app.enablePanel);
+		
 		// Если расстояние от пользователя до кафе меньше 700 метров, показываем карту так, чтобы вместить точку пользователя и точку кафе, иначе показываем только кафе
 		map.createMarks([{
 			type: 'Feature',

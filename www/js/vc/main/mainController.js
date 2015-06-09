@@ -53,7 +53,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		{
 			element: '#submitFilter',
 			event: 'click',
-			handler: submitFilter,
+			handler: submitFilter
 		},
 		
 		//GoogleAnalitics
@@ -206,9 +206,13 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		// Предотвращение открытия меню по свайпу при перетаскивании карты
 		map.map.events.add('mouseenter', app.disablePanel);
 		map.map.events.add('mouseleave', app.enablePanel);
+		
+		map.objectManager.events.add('mouseenter', app.disablePanel);
+		map.objectManager.events.add('mouseleave', app.enablePanel);
+		
 		var itemList={};
 		
-		//getLunchBySquareCoords();
+		getLunchBySquareCoords();
 		map.boundsChange(function() {
 			userPosition = false;
 			getLunchBySquareCoords();
