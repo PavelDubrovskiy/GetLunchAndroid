@@ -46,13 +46,6 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			event: 'click',
 			handler: toggleFavouriteState
 		},
-		
-		// Выход из приложения
-		{
-			element: '.app_exit',
-			event: 'click',
-			handler: appExit
-		},
 		{
 			element: '#soughtList',
 			event: 'click',
@@ -454,13 +447,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		if($('.p_main_search_input').val()!=''){
 			searchHandler();
 		}
-	}
-	
-	// Выход из приложения
-	function appExit() {
-		window.close();
-	}
-	
+	}	
 	return {
 		init: init
 	};

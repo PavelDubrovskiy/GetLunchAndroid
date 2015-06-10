@@ -63,18 +63,13 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	}
 	
 	function exitToStart(){
-		alert('ddddddd');
-		/*var CurrentUser=JSON.parse(localStorage.getItem('User'));
-		try{
-			if(CurrentUser){
-				localStorage.clear();
-				document.location.href='index.html';
-			}else{
-				app.mainView.loadPage('authorization.html');
-			}
-		}catch(e){
-			console.log(e);
-		}*/
+		var CurrentUser=JSON.parse(localStorage.getItem('User'));
+		if(CurrentUser){
+			localStorage.clear();
+			document.location.href='index.html';
+		}else{
+			app.mainView.loadPage('authorization.html');
+		}
 	}
 	
 	return {
