@@ -279,20 +279,22 @@
 			}catch(e){}
 			
 			var f7 = document.createElement('script'),
-				ymaps = document.createElement('script'),
+				yandexmaps = document.createElement('script'),
 				requirejs = document.createElement('script')
 			;
 
 			f7.src = 'js/lib/framework7.min.js';
-			ymaps.src = 'http://api-maps.yandex.ru/2.1.26/?lang=ru_RU';
+			yandexmaps.src = 'http://api-maps.yandex.ru/2.1.26/?lang=ru_RU';
 			requirejs.src = 'js/lib/require.js';
 			requirejs.setAttribute('data-main','app');
 			
 			f7.onload = function(){
-				document.body.appendChild(ymaps);
+				document.body.appendChild(yandexmaps);
 				
-				ymaps.onload = function() {
-					document.body.appendChild(requirejs);
+				yandexmaps.onload = function() {
+					ymaps.ready( function() {
+						document.body.appendChild(requirejs);
+					});
 				}
 			};
 
