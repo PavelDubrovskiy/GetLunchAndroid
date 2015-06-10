@@ -18,6 +18,11 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 		}
 	];
 	
+	app.f7.searchbar('.address-search', {
+		searchList: '.list-block-search',
+		searchIn: '.item-title'
+	});
+	
 	app.watchID = navigator.geolocation.watchPosition(function(position){
 			console.log('geo success from start');
 			try{
