@@ -63,7 +63,8 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	}
 	
 	function exitToStart(){
-		var CurrentUser=JSON.parse(localStorage.getItem('User'));
+		alert('ddddddd');
+		/*var CurrentUser=JSON.parse(localStorage.getItem('User'));
 		try{
 			if(CurrentUser){
 				localStorage.clear();
@@ -73,7 +74,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 			}
 		}catch(e){
 			console.log(e);
-		}
+		}*/
 	}
 	
 	return {
