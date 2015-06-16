@@ -70,11 +70,6 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 		}else{
 			app.mainView.loadPage('authorization.html');
 		}
-		/*try{
-			navigator.app.exitApp();
-		}catch(e){
-			
-		}*/
 	}
 	
 	return {

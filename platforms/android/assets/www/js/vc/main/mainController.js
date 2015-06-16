@@ -8,6 +8,11 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	var userPosition=true;
 	var minZoom = 13;
 	
+	var search = app.f7.searchbar('.address-search', {
+		searchList: '.list-block-search',
+		searchIn: '.item-title'
+	});
+	
 	if(localStorage.getItem('sought')!==null){
 		sought=localStorage.getItem('sought').split('!__;__!');
 	}
@@ -30,19 +35,16 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			event: 'search change',
 			handler: searchHandler
 		},
-		
+		{
+			element: '.searchbar-clear',
+			event: 'click',
+			handler: clearHandler
+		},
 		// Управление избранным
 		{
 			element: '.p_main_favourite_toggle',
 			event: 'click',
 			handler: toggleFavouriteState
-		},
-		
-		// Выход из приложения
-		{
-			element: '.app_exit',
-			event: 'click',
-			handler: appExit
 		},
 		{
 			element: '#soughtList',
@@ -279,6 +281,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	
 	function soughtClick() {
 		$('.p_main_search_input').val($(this).text());
+		search.container.addClass('searchbar-not-empty');
 		searchHandler();
 	}
 	// Поиск
@@ -298,17 +301,21 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				sought.unshift(searchInput);
 				localStorage.setItem('sought',sought.join('!__;__!'));
 				console.log(msg);
-				
-				var valuesItem={lunchList:msg.list,map:map};
-				view.attachLunches(valuesItem);
-				
-				$('.b_cards_item').off('click').on('click', setCurrent);
-				
-				app.firstEnter=false;
-				map.setBounds([msg.coords.coordsTL, msg.coords.coordsBR]);
+				if(msg.list.length!=0){
+					var valuesItem={lunchList:msg.list,map:map};
+					view.attachLunches(valuesItem);
+					
+					$('.b_cards_item').off('click').on('click', setCurrent);
+					
+					app.firstEnter=false;
+					map.setBounds([msg.coords.coordsTL, msg.coords.coordsBR]);
+				}
 				$(".p_main_search_close").click();
 			}
 		}
+	}
+	function clearHandler(){
+		searchInput='';
 	}
 	// Получение адресов по крайним точкам карты
 	function getLunchBySquareCoords(){
@@ -440,13 +447,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		if($('.p_main_search_input').val()!=''){
 			searchHandler();
 		}
-	}
-	
-	// Выход из приложения
-	function appExit() {
-		window.close();
-	}
-	
+	}	
 	return {
 		init: init
 	};
