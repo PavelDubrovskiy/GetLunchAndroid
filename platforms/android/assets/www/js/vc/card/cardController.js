@@ -40,6 +40,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	}
 	// Инициализация страницы
 	function init(query) {
+		localStorage.setItem('soughtUrl', 'card.html');
 		var mapFullscreen = false;
 		var values={latitude:app.latitude, longitude:app.longitude, source:app.config.source, id:localStorage.getItem("currentId")};
 		
