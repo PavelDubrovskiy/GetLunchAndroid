@@ -1,20 +1,20 @@
 <!---
- license: Licensed to the Apache Software Foundation (ASF) under one
-         or more contributor license agreements.  See the NOTICE file
-         distributed with this work for additional information
-         regarding copyright ownership.  The ASF licenses this file
-         to you under the Apache License, Version 2.0 (the
-         "License"); you may not use this file except in compliance
-         with the License.  You may obtain a copy of the License at
-
-           http://www.apache.org/licenses/LICENSE-2.0
-
-         Unless required by applicable law or agreed to in writing,
-         software distributed under the License is distributed on an
-         "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-         KIND, either express or implied.  See the License for the
-         specific language governing permissions and limitations
-         under the License.
+# license: Licensed to the Apache Software Foundation (ASF) under one
+#         or more contributor license agreements.  See the NOTICE file
+#         distributed with this work for additional information
+#         regarding copyright ownership.  The ASF licenses this file
+#         to you under the Apache License, Version 2.0 (the
+#         "License"); you may not use this file except in compliance
+#         with the License.  You may obtain a copy of the License at
+#
+#           http://www.apache.org/licenses/LICENSE-2.0
+#
+#         Unless required by applicable law or agreed to in writing,
+#         software distributed under the License is distributed on an
+#         "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#         KIND, either express or implied.  See the License for the
+#         specific language governing permissions and limitations
+#         under the License.
 -->
 
 # cordova-plugin-contacts
@@ -49,7 +49,16 @@ contact data.  For more information, please see the Privacy Guide.
 
 ## Installation
 
+This requires cordova 5.0+ ( current stable v1.0.0 )
+
     cordova plugin add cordova-plugin-contacts
+Older versions of cordova can still install via the __deprecated__ id ( stale v0.2.16 )
+
+    cordova plugin add org.apache.cordova.contacts
+It is also possible to install via repo url directly ( unstable )
+
+    cordova plugin add https://github.com/apache/cordova-plugin-contacts.git
+
 
 ### Firefox OS Quirks
 
@@ -69,8 +78,10 @@ __WARNING__: All privileged apps enforce [Content Security Policy](https://devel
 
 ### Windows Quirks
 
-Any contacts returned from `find` and `pickContact` methods are readonly, so your application cannot modify them.
+**Prior to Windows 10:** Any contacts returned from `find` and `pickContact` methods are readonly, so your application cannot modify them.
 `find` method available only on Windows Phone 8.1 devices.
+
+**Windows 10 and above:** Contacts may be saved and will be saved to app-local contacts storage.  Contacts may also be deleted.
 
 ### Windows 8 Quirks
 
@@ -159,7 +170,7 @@ parameter to control which contact properties must be returned back.
 - Firefox OS
 - iOS
 - Windows Phone 7 and 8
-- Windows (Windows Phone 8.1 devices only)
+- Windows (Windows Phone 8.1 and Windows 10)
 
 ### Example
 
@@ -377,7 +388,7 @@ for details.
 
 - __categories__: Not supported, returning `null`.
 
-- __remove__: Method is not supported
+- __remove__: Method is only supported in Windows 10 or above.
 
 ## ContactAddress
 

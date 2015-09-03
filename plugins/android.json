@@ -13,11 +13,15 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>",
+                            "xml": "<preference name=\"webView\" value=\"org.crosswalk.engine.XWalkWebViewEngine\" />",
                             "count": 1
                         },
                         {
-                            "xml": "<preference name=\"webView\" value=\"org.crosswalk.engine.XWalkWebViewEngine\" />",
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Contacts\"><param name=\"android-package\" value=\"org.apache.cordova.contacts.ContactManager\" /></feature>",
                             "count": 1
                         },
                         {
@@ -39,10 +43,6 @@
                         {
                             "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
-                            "count": 1
                         }
                     ]
                 }
@@ -50,6 +50,14 @@
             "AndroidManifest.xml": {
                 "parents": {
                     "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 2
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 2
+                        },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.READ_CONTACTS\" />",
                             "count": 1
@@ -61,14 +69,6 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\" />",
                             "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
-                            "count": 2
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
-                            "count": 2
                         }
                     ],
                     "/manifest": [
@@ -85,13 +85,16 @@
         "com.adobe.plugins.GAPlugin": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
+        },
+        "nl.x-services.plugins.socialsharing": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "cordova-plugin-contacts": {
-            "PACKAGE_NAME": "ru.one_touch.getlunch"
-        },
-        "cordova-plugin-crosswalk-webview": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "cordova-plugin-device": {
@@ -110,9 +113,6 @@
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "ru.one_touch.getlunch"
-        },
-        "nl.x-services.plugins.socialsharing": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         }
     },
