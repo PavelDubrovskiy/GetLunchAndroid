@@ -1,26 +1,4 @@
 {
-    "com.adobe.plugins.GAPlugin": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phonegap-build/GAPlugin.git",
-            "subdir": "."
-        }
-    },
-    "nl.x-services.plugins.socialsharing": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
-            "subdir": "."
-        }
-    },
-    "cordova-plugin-crosswalk-webview": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-crosswalk-webview"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "org.apache.cordova.console": {
         "source": {
             "type": "registry",
@@ -32,7 +10,7 @@
     "cordova-plugin-console": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-console"
+            "id": "cordova-plugin-console@~1.0.2"
         },
         "is_top_level": true,
         "variables": {}
@@ -40,7 +18,15 @@
     "cordova-plugin-contacts": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-contacts"
+            "id": "cordova-plugin-contacts@~2.0.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-crosswalk-webview": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-crosswalk-webview"
         },
         "is_top_level": true,
         "variables": {}
@@ -48,7 +34,7 @@
     "cordova-plugin-device": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-device"
+            "id": "cordova-plugin-device@~1.1.1"
         },
         "is_top_level": true,
         "variables": {}
@@ -56,7 +42,7 @@
     "cordova-plugin-device-motion": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-device-motion"
+            "id": "cordova-plugin-device-motion@~1.2.0"
         },
         "is_top_level": true,
         "variables": {}
@@ -64,7 +50,7 @@
     "cordova-plugin-device-orientation": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-device-orientation"
+            "id": "cordova-plugin-device-orientation@~1.0.2"
         },
         "is_top_level": true,
         "variables": {}
@@ -72,7 +58,7 @@
     "cordova-plugin-geolocation": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-geolocation"
+            "id": "cordova-plugin-geolocation@~2.1.0"
         },
         "is_top_level": true,
         "variables": {}
@@ -80,7 +66,7 @@
     "cordova-plugin-inappbrowser": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-inappbrowser"
+            "id": "cordova-plugin-inappbrowser@~1.2.0"
         },
         "is_top_level": true,
         "variables": {}
@@ -88,7 +74,24 @@
     "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-whitelist"
+            "id": "cordova-plugin-whitelist@~1.2.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-x-socialsharing": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-x-socialsharing"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.adobe.plugins.GAPlugin": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phonegap-build/GAPlugin",
+            "subdir": "."
         },
         "is_top_level": true,
         "variables": {}
@@ -99,6 +102,8 @@
             "id": "phonegap-plugin-push"
         },
         "is_top_level": true,
-        "variables": {}
+        "variables": {
+            "SENDER_ID": "718172509486"
+        }
     }
 }

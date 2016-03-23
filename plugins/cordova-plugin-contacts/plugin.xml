@@ -21,8 +21,10 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest"
+    xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
     id="cordova-plugin-contacts"
-    version="1.1.0">
+    version="2.0.1">
 
     <name>Contacts</name>
     <description>Cordova Contacts Plugin</description>
@@ -85,6 +87,7 @@
         <source-file src="src/android/ContactAccessorSdk5.java" target-dir="src/org/apache/cordova/contacts" />
         <source-file src="src/android/ContactManager.java" target-dir="src/org/apache/cordova/contacts" />
         <source-file src="src/android/ContactInfoDTO.java" target-dir="src/org/apache/cordova/contacts" />
+        <source-file src="src/android/PermissionHelper.java" target-dir="src/org/apache/cordova/contacts" />
     </platform>
 
     <!-- amazon-fireos -->
@@ -105,7 +108,7 @@
         <source-file src="src/android/ContactAccessorSdk5.java" target-dir="src/org/apache/cordova/contacts" />
         <source-file src="src/android/ContactManager.java" target-dir="src/org/apache/cordova/contacts" />
     </platform>
-    
+
     <!-- ubuntu -->
     <platform name="ubuntu">
         <config-file target="config.xml" parent="/*">
@@ -167,21 +170,6 @@
         <dependency id="com.blackberry.pim.lib" />
     </platform>
 
-    <!-- wp7 -->
-    <platform name="wp7">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Contacts">
-                <param name="wp-package" value="Contacts"/>
-            </feature>
-        </config-file>
-
-        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
-            <Capability Name="ID_CAP_CONTACTS" />
-        </config-file>
-
-        <source-file src="src/wp/Contacts.cs" />
-        <source-file src="src/wp/ContactsHelper.cs" />
-    </platform>
 
     <!-- wp8 -->
     <platform name="wp8">
@@ -201,7 +189,7 @@
         <source-file src="src/wp/ContactPicker.xaml.cs" />
         <source-file src="src/wp/ContactPickerTask.cs" />
     </platform>
-    
+
     <!-- firefoxos -->
     <platform name="firefoxos">
         <config-file target="config.xml" parent="/*">
@@ -211,7 +199,7 @@
         <js-module src="src/firefoxos/ContactsProxy.js" name="ContactsProxy">
             <runs />
         </js-module>
-    </platform>    
+    </platform>
 
     <!-- Windows 8 -->
     <platform name="windows8">

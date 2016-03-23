@@ -124,19 +124,13 @@
         }
     },
     "installed_plugins": {
-        "com.adobe.plugins.GAPlugin": {
-            "PACKAGE_NAME": "ru.one_touch.getlunch"
-        },
-        "cordova-plugin-crosswalk-webview": {
-            "PACKAGE_NAME": "ru.one_touch.getlunch"
-        },
-        "nl.x-services.plugins.socialsharing": {
-            "PACKAGE_NAME": "ru.one_touch.getlunch"
-        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
+        },
+        "cordova-plugin-crosswalk-webview": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
         "cordova-plugin-device": {
@@ -157,7 +151,14 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
+        },
+        "com.adobe.plugins.GAPlugin": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
+        },
         "phonegap-plugin-push": {
+            "SENDER_ID": "718172509486",
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         }
     },

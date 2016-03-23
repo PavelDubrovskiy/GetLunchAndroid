@@ -12,12 +12,13 @@
     <allow-intent href="*" />
     <allow-navigation href="*" />
     <preference name="Orientation" value="portrait" />
-    <plugin name="cordova-plugin-console" spec="^1.0.1" />
-    <plugin name="cordova-plugin-contacts" spec="^1.1.0" />
-    <plugin name="cordova-plugin-device" spec="^1.0.1" />
-    <plugin name="cordova-plugin-device-motion" spec="^1.1.1" />
-    <plugin name="cordova-plugin-device-orientation" spec="^1.0.1" />
-    <plugin name="cordova-plugin-geolocation" spec="^1.0.1" />
-    <plugin name="cordova-plugin-inappbrowser" spec="^1.0.1" />
-    <plugin name="cordova-plugin-whitelist" spec="^1.0.0" />
+    <plugin name="cordova-plugin-console" spec="~1.0.2" />
+    <plugin name="cordova-plugin-contacts" spec="~2.0.1" />
+    <plugin name="cordova-plugin-crosswalk-webview" spec="~1.6.1" />
+    <plugin name="cordova-plugin-device" spec="~1.1.1" />
+    <plugin name="cordova-plugin-device-motion" spec="~1.2.0" />
+    <plugin name="cordova-plugin-device-orientation" spec="~1.0.2" />
+    <plugin name="cordova-plugin-geolocation" spec="~2.1.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~1.2.1" />
+    <plugin name="cordova-plugin-whitelist" spec="~1.2.1" />
 </widget>

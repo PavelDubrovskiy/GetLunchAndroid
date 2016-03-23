@@ -106,10 +106,10 @@ function convertToContact(windowsContact) {
         contact.note = contactNotes;
     }
 
-    // thumbnail field available on Windows 8.1/WP8.1 only
+    // returned is a file, a blob url can be made 
     var contactPhoto = windowsContact.thumbnail;
     if (contactPhoto && contactPhoto.path) {
-        contact.photos = [new ContactField(null, contactPhoto.path , false)];
+        contact.photos = [new ContactField('url', URL.createObjectURL(contactPhoto) , false)];
     }
 
     return contact;
@@ -242,7 +242,9 @@ module.exports = {
         pickRequest.done(function (contact) {
             // if contact was not picked
             if (!contact) {
-                fail && fail(new Error("User did not pick a contact."));
+                var cancelledError = new ContactError(ContactError.OPERATION_CANCELLED_ERROR);
+                cancelledError.message = "User did not pick a contact.";
+                fail(cancelledError);
                 return;
             }
             // If we are on desktop, just send em back
