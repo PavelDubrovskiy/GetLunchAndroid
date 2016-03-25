@@ -21,4 +21,8 @@
     <plugin name="cordova-plugin-geolocation" spec="~2.1.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="~1.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="~1.2.1" />
+    <plugin name="cordova-plugin-facebook4" spec="~1.7.0">
+        <variable name="APP_ID" value="281560105368956" />
+        <variable name="APP_NAME" value="GetLunch" />
+    </plugin>
 </widget>
