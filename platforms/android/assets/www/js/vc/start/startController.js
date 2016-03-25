@@ -28,6 +28,48 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 		function(){console.log('geo fail from start');}, 
 		{timeout: 9000, enableHighAccuracy: true}
 	);
+	
+	try{
+		var PushNoti = PushNotification.init({
+		    android: {
+		        senderID: "GetLunch"
+		    },
+		    ios: {
+		        alert: "true",
+		        badge: "true",
+		        sound: "true"
+		    }
+		});
+		PushNoti.on('registration', function(data) {
+			console.log("registration event");
+			console.log(JSON.stringify(data));
+			localStorage.setItem('pushRegistrationId',data.registrationId);
+		});
+		PushNoti.on('notification', function(data) {
+	    	console.log("notification event");
+	        console.log(JSON.stringify(data));
+	        var cards = document.getElementById("cards");
+	        var card = '<div class="row">' +
+		  		  '<div class="col s12 m6">' +
+				  '  <div class="card darken-1">' +
+				  '    <div class="card-content black-text">' +
+				  '      <span class="card-title black-text">' + data.title + '</span>' +
+				  '      <p>' + data.message + '</p>' +
+				  '    </div>' +
+				  '  </div>' +
+				  ' </div>' +
+				  '</div>';
+	        cards.innerHTML += card;
+	        
+	        PushNoti.finish(function () {
+	            console.log('finish successfully called');
+	        });
+	    });
+		PushNoti.on('error', function(e) {
+	        console.log("push error");
+	    });
+	}catch(e){console.log("PushNotification error:");console.log(e);}	
+	
 	function init(){
 		app.tryConnection(function(){
 			app.GAPage('/start/');

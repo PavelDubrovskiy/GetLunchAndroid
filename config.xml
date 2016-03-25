@@ -12,6 +12,7 @@
     <allow-intent href="*" />
     <allow-navigation href="*" />
     <preference name="Orientation" value="portrait" />
+	<preference name="android-minSdkVersion" value="15" />
     <plugin name="cordova-plugin-console" spec="~1.0.2" />
     <plugin name="cordova-plugin-contacts" spec="~2.0.1" />
     <plugin name="cordova-plugin-crosswalk-webview" spec="~1.6.1" />

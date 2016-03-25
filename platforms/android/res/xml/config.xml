@@ -58,4 +58,5 @@
     <allow-intent href="*" />
     <allow-navigation href="*" />
     <preference name="Orientation" value="portrait" />
+    <preference name="android-minSdkVersion" value="15" />
 </widget>
