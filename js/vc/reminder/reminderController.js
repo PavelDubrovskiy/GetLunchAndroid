@@ -33,9 +33,10 @@ define(["app", "js/utilities/picker","js/utilities/forms"], function(app, picker
 			localStorage.setItem('reminderForm',JSON.stringify(forms.serialize(form,'array')));
 			var user=JSON.parse(localStorage.getItem('User'));
 			if(user)data+='&iuser='+user.id;
+			var pushRegistrationId=localStorage.getItem('pushRegistrationId');
 			try{
 				if( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
-					data+='&code='+pushNotificationGCMId;
+					data+='&code='+pushRegistrationId;
 					data+='&platform=android';
 					$.ajax({
 						type: "POST",
@@ -47,7 +48,7 @@ define(["app", "js/utilities/picker","js/utilities/forms"], function(app, picker
 						}
 					});
 				}else {
-					data+='&code='+pushNotificationiOS;
+					data+='&code='+pushRegistrationId;
 					data+='&platform=ios';
 					$.ajax({
 						type: "POST",
@@ -60,6 +61,7 @@ define(["app", "js/utilities/picker","js/utilities/forms"], function(app, picker
 					});
 				}
 			}catch(e){		
+				console.log(e);
 				data+='&code=1111111';
 				data+='&platform=android';
 				$.ajax({
