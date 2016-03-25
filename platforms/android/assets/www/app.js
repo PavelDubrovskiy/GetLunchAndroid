@@ -189,6 +189,9 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 		interval:0,
 		intervalCompass:0,
 		firstEnter:true,
+		firstMainLoad:true,
+		firstMainTimeout:0,
+		cardMultiRoute:'',
 		enablePanel: function() {
 			f7.allowPanelOpen = true;
 		},

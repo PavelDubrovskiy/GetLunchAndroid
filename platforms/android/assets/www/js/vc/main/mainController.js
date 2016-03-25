@@ -150,7 +150,8 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		// Создание карты
 		map = new Map({
 			mapId: 'mainMap',
-			openBalloon: true
+			openBalloon: true,
+			initZoom: 18
 		});
 		
 		// Добавление подписки на события управления картой
@@ -215,10 +216,10 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		
 		var itemList={};
 		
-		getLunchBySquareCoords();
+		getLunchBySquareCoords(219);
 		map.boundsChange(function() {
 			userPosition = false;
-			getLunchBySquareCoords();
+			getLunchBySquareCoords(222);
 		});
 		geolocation();
 		//setTimeout(getNearestLunches, 400);
@@ -245,20 +246,20 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 							app.latitude=position.coords.latitude;
 							app.longitude=position.coords.longitude;
 							//getNearestLunches();
-							getLunchBySquareCoords();
+							getLunchBySquareCoords(249);
 							if(userPosition==true && app.latitude!=0) map.setUserPosition([app.latitude, app.longitude], true);
 						}
 					}catch(e){}
 				}, 
 				function(){
 					console.log('geo fail from main');
-					getLunchBySquareCoords();
+					getLunchBySquareCoords(256);
 				}, 
 				{timeout: 9000, enableHighAccuracy: true}
 			);
 		}else{
 			//getNearestLunches();
-			getLunchBySquareCoords();
+			getLunchBySquareCoords(262);
 			map.setUserPosition([app.latitude, app.longitude], true);
 			if(map.map.getZoom() < minZoom) {
 				map.map.setZoom(minZoom+1);
@@ -319,7 +320,8 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		searchInput='';
 	}
 	// Получение адресов по крайним точкам карты
-	function getLunchBySquareCoords(){
+	function getLunchBySquareCoords(line){
+		//console.log('line: '+line);
 		if(searchInput==''){
 			if(map.map.getZoom()>minZoom){
 				var filter=JSON.parse(localStorage.getItem('filter'));
@@ -343,6 +345,8 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 				//map.geolocation(values);
 				
 				var lunchList=api.getLunchBySquareCoords(values);
+				if(app.firstMainTimeout!=0) window.clearTimeout(app.firstMainTimeout);
+				app.firstMainTimeout=window.setTimeout(function(){onBoundsChange()},3000);
 				var mainLunchesList=JSON.parse(localStorage.getItem('mainLunchesList'));
 				var isChangeInList=false;
 				var clearList=[];
@@ -448,7 +452,22 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 		if($('.p_main_search_input').val()!=''){
 			searchHandler();
 		}
-	}	
+	}
+	
+	//Проверка на пустые значения
+	function onBoundsChange(){
+		if(app.firstMainLoad){
+			var x=0;
+			$('#mainCardsList li').each(function(){
+				x++;
+			});
+			if(x==0){
+				$('.b_map_btn.m_zoomout').click();
+			}else{
+				app.firstMainLoad=false;
+			}
+		}
+	}
 	return {
 		init: init
 	};

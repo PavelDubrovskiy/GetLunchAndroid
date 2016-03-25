@@ -129,7 +129,14 @@ define(["app"], function(app) {
 	
 	function createTimePicker(input, container, options) {
 		var hour = today.getHours();
+		var minutes=0;
 		hour = hour + 1 > 23 ? 0 : hour + 1;
+		
+		if(options.initTime){
+			var initTime = timeToArray(options.initTime);
+			hour=initTime[0];
+			minutes=initTime[1];
+		}
 		
 		return app.f7.picker({
 			input: input,
@@ -141,7 +148,7 @@ define(["app"], function(app) {
 				return values[0] + ':' + values[1];
 			},
 			
-			value: [addZero(hour), addZero(0)],
+			value: [addZero(hour), addZero(minutes)],
 		
 			cols: [
 				// Hours
