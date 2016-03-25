@@ -32,7 +32,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	try{
 		var PushNoti = PushNotification.init({
 		    android: {
-		        senderID: "55:EE:12:92:FC:9A:1D:EF:AE:FC:75:A7:18:71:EC:0A:B4:A0:2C:03"
+		        senderID: "718172509486"
 		    },
 		    ios: {
 		        alert: "true",
