@@ -108,7 +108,6 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		map.objectManager.events.add('mouseenter', app.disablePanel);
 		map.objectManager.events.add('mouseleave', app.enablePanel);
 		
-		// Если расстояние от пользователя до кафе меньше 700 метров, показываем карту так, чтобы вместить точку пользователя и точку кафе, иначе показываем только кафе
 		map.createMarks([{
 			type: 'Feature',
 			id: lunch.id,
@@ -128,6 +127,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		/*console.log('lunch.latitude='+lunch.latitude+' lunch.longitude='+lunch.longitude);
 		console.log('app.latitude='+app.latitude+' app.longitude='+app.longitude);*/
 		
+		// Если расстояние от пользователя до кафе меньше 700 метров, показываем карту так, чтобы вместить точку пользователя и точку кафе, иначе показываем только кафе
 		//if( lunch.metres < 450 ) {
 			//map.autoBoundsUser();
 			if(lunch.longitude>app.longitude){
@@ -142,6 +142,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 				]);
 			}
 			map.setUserPosition([app.latitude, app.longitude]);
+			
 		/*}else{
 			map.map.setCenter(
 				map.getOffset(
@@ -150,6 +151,20 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			);
 			map.setUserPosition([app.latitude, app.longitude]);
 		}*/		
+		
+		if(app.cardMultiRoute!='') map.map.geoObjects.remove(app.cardMultiRoute);
+		app.cardMultiRoute = new ymaps.multiRouter.MultiRoute({
+	        referencePoints: [
+	            [app.latitude, app.longitude],
+	            [lunch.latitude, lunch.longitude]
+	        ],
+	        params: {
+	            routingMode: 'masstransit'
+	        }
+	    }, {
+	        boundsAutoApply: true,
+	    });
+		map.map.geoObjects.add(app.cardMultiRoute);
 	}
 			
 	// Функция управления избранным
