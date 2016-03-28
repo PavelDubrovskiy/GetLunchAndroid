@@ -58,7 +58,7 @@ define(["app", "js/utilities/picker","js/utilities/forms"], function(app, picker
 				    //id: 1,
 				    title: "GetLunch",
 				    text: "Пора есть!",
-				    firstAt: firstAt,
+				    at: firstAt,
 				    every: every,
 				    //sound: "file://sounds/reminder.mp3",
 				    //icon: "http://icons.com/?cal_id=1",
