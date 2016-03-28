@@ -44,23 +44,27 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 			console.log("registration event");
 			console.log(JSON.stringify(data));
 			localStorage.setItem('pushRegistrationId',data.registrationId);
+			if( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
+				data+='&code='+data.registrationId;
+				data+='&platform=android';
+			}else {
+				data+='&code='+data.registrationId;
+				data+='&platform=ios';
+				
+			}
+			$.ajax({
+				type: "POST",
+				async: false,
+				url: app.config.source+"/api/pull/",
+				data: data,
+				success: function(msg){
+					forms.showMessage(msg, 'success');
+				}
+			});
 		});
 		PushNoti.on('notification', function(data) {
 	    	console.log("notification event");
 	        console.log(JSON.stringify(data));
-	        var cards = document.getElementById("cards");
-	        var card = '<div class="row">' +
-		  		  '<div class="col s12 m6">' +
-				  '  <div class="card darken-1">' +
-				  '    <div class="card-content black-text">' +
-				  '      <span class="card-title black-text">' + data.title + '</span>' +
-				  '      <p>' + data.message + '</p>' +
-				  '    </div>' +
-				  '  </div>' +
-				  ' </div>' +
-				  '</div>';
-	        cards.innerHTML += card;
-	        
 	        PushNoti.finish(function () {
 	            console.log('finish successfully called');
 	        });

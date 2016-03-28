@@ -1,6 +1,6 @@
 define(["app", "js/utilities/picker","js/utilities/forms"], function(app, picker, forms) {
 	var $ = Framework7.$;
-	
+	var weekdays={mon:'monday',tue:'tuesday',wed:'wednesday',thu:'thursday',fri:'friday',sat:'saturday',sun:'sunday'};
 	function init(query) {
 		var $input = $('#reminderTime');
 		var initTime=false;
@@ -30,49 +30,44 @@ define(["app", "js/utilities/picker","js/utilities/forms"], function(app, picker
 		$('.p_reminder_submit').on('click', function(){
 			var form = document.getElementById('reminderForm');
 			var data=forms.serialize(form);
-			localStorage.setItem('reminderForm',JSON.stringify(forms.serialize(form,'array')));
+			var dataArr=forms.serialize(form,'array');			
+			localStorage.setItem('reminderForm',JSON.stringify(dataArr));
+			
 			var user=JSON.parse(localStorage.getItem('User'));
-			if(user)data+='&iuser='+user.id;
-			var pushRegistrationId=localStorage.getItem('pushRegistrationId');
-			try{
-				if( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
-					data+='&code='+pushRegistrationId;
-					data+='&platform=android';
-					$.ajax({
-						type: "POST",
-						async: false,
-						url: app.config.source+"/api/pull/",
-						data: data,
-						success: function(msg){
-							forms.showMessage(msg, 'success');
-						}
-					});
-				}else {
-					data+='&code='+pushRegistrationId;
-					data+='&platform=ios';
-					$.ajax({
-						type: "POST",
-						async: false,
-						url: app.config.source+"/api/pull/",
-						data: data,
-						success: function(msg){
-							forms.showMessage(msg, 'success');
-						}
-					});
+			if(user)data+='&iuser='+user.id;			
+			var pushRegistrationId=localStorage.getItem('pushRegistrationId');	
+			
+			console.log(dataArr);
+			
+			var every=0;
+			if($.isArray(dataArr.weekly)) every='week';
+			var firstAt=[];
+			if($.isArray(dataArr['days[]'])){
+				console.log(firstAt);   
+				for(var i in dataArr['days[]']){
+					firstAt.push(weekdays[dataArr['days[]'][i]]);
 				}
+			}
+			firstAt.push(dataArr.time);
+			console.log(firstAt);
+			firstAt=firstAt.join('_');
+			console.log(firstAt);
+			
+			try{
+				cordova.plugins.notification.local.schedule({
+				    //id: 1,
+				    title: "GetLunch",
+				    text: "Пора есть!",
+				    firstAt: firstAt,
+				    every: every,
+				    //sound: "file://sounds/reminder.mp3",
+				    //icon: "http://icons.com/?cal_id=1",
+				    //data: { meetingId:"123#fg8" }
+				});
+				forms.showMessage('Напоминание установлено!', 'success');
 			}catch(e){		
 				console.log(e);
-				data+='&code=1111111';
-				data+='&platform=android';
-				$.ajax({
-					type: "POST",
-					async: false,
-					url: app.config.source+"/api/pull/",
-					data: data,
-					success: function(msg){
-						forms.showMessage(msg, 'success');
-					}
-				});
+				//console.log(data);
 			}
 		});
 		$('.b_reminder_checkbox').on('click', function(){
