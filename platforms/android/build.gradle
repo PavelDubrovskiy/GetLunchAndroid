@@ -245,6 +245,7 @@ dependencies {
     compile "com.android.support:support-v13:23+"
     compile "com.google.android.gms:play-services-gcm:+"
     compile "com.facebook.android:facebook-android-sdk:4.+"
+    compile "com.android.support:support-v4:+"
     // SUB-PROJECT DEPENDENCIES END
 }
 

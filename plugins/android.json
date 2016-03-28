@@ -165,7 +165,14 @@
             "APP_ID": "281560105368956",
             "APP_NAME": "GetLunch",
             "PACKAGE_NAME": "ru.one_touch.getlunch"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
+        }
+    }
 }

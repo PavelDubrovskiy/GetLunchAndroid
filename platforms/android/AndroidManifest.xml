@@ -32,6 +32,17 @@
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/fb_app_id" />
         <meta-data android:name="com.facebook.sdk.ApplicationName" android:value="@string/fb_app_name" />
         <activity android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/fb_app_name" android:name="com.facebook.FacebookActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <receiver android:exported="false" android:name="de.appplant.cordova.plugin.localnotification.TriggerReceiver" />
+        <receiver android:exported="false" android:name="de.appplant.cordova.plugin.localnotification.ClearReceiver" />
+        <activity android:exported="false" android:launchMode="singleInstance" android:name="de.appplant.cordova.plugin.localnotification.ClickActivity" android:theme="@android:style/Theme.NoDisplay" />
+        <receiver android:exported="false" android:name="de.appplant.cordova.plugin.notification.TriggerReceiver" />
+        <receiver android:exported="false" android:name="de.appplant.cordova.plugin.notification.ClearReceiver" />
+        <receiver android:exported="false" android:name="de.appplant.cordova.plugin.localnotification.RestoreReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <activity android:exported="false" android:launchMode="singleInstance" android:name="de.appplant.cordova.plugin.notification.ClickActivity" android:theme="@android:style/Theme.NoDisplay" />
     </application>
     <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="19" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -46,4 +57,5 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <permission android:name="ru.one_touch.getlunch.permission.C2D_MESSAGE" android:protectionLevel="signature" />
     <uses-permission android:name="ru.one_touch.getlunch.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 </manifest>

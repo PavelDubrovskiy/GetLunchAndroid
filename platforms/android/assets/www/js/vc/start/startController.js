@@ -32,7 +32,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	try{
 		var PushNoti = PushNotification.init({
 		    android: {
-		        senderID: "GetLunch"
+		        senderID: "718172509486"
 		    },
 		    ios: {
 		        alert: "true",
@@ -67,6 +67,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	    });
 		PushNoti.on('error', function(e) {
 	        console.log("push error");
+	        console.log(e);
 	    });
 	}catch(e){console.log("PushNotification error:");console.log(e);}	
 	
