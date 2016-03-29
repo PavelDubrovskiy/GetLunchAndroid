@@ -38,7 +38,8 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	var config={
 		source:'http://getlunch.ru'
 	};
-	var LoginFB = {
+	
+	/*var LoginFB = {
 	    wwwref: false,
 	    plugin_perms: "publish_actions,email,user_friends,offline_access",
 	    
@@ -76,7 +77,35 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 				});
 	        }
 	    }
-	};
+	};*/
+	var LoginFB = function(){
+		try{
+			facebookConnectPlugin.login(["publish_actions","email","user_friends","offline_access"], 
+				function (data) {
+					console.log(data);
+					/*if(user.code!='')data.code=user.code;
+		            $.ajax({
+						type: "POST",
+						async: false,
+						url: config.source+"/api/fbauth/",
+						data: data,
+						success: function(msg){
+							if(msg!='error'){
+								LoginUser();
+								user.setValues(JSON.parse(msg));
+								ymaps.ready(function () {
+									//mainView.loadPage('main.html');
+									$('.back').click();
+								});
+							}else{
+								forms.showMessage('Ошибка аутентификации', "error");
+							}
+						}
+					});*/
+				}, function(e){console.log(e);}
+			);
+		}catch(e){console.log(e);}
+	}
 	var LogoutFB = function(){
 		$.ajax({
 			type: "POST",

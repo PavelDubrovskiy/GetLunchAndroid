@@ -50,7 +50,7 @@ define(["app", "js/utilities/picker","js/utilities/forms"], function(app, picker
 						    at: d,
 						    every: every,
 						    //sound: "file://sounds/reminder.mp3",
-						    icon: "file://i/120pt.png",
+						    icon: "/i/120pt.png",
 						});
 					}catch(e){console.log(e);}
 				}

@@ -38,7 +38,7 @@ define(["app","js/vc/authorization/authorizationView", "js/m/user", "js/utilitie
 	}
 	
 	function loginFacebook (){
-		app.LoginFB.auth(false);
+		app.LoginFB();
 	}
 	
 	function loginVK (){
