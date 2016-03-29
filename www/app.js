@@ -31,7 +31,6 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	
 	f7.allowPanelOpen = false;
 	
-	
 	var mainView = f7.addView('.view-main', {
 		dynamicNavbar: true
 	});
@@ -41,9 +40,10 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 	var LoginFB = function(){
 		try{
 			facebookConnectPlugin.login(["email","user_friends"], 
-				function (data) {
+				function (tmp) {
+					console.log(tmp);					
+					var data={token:tmp.authResponse.accessToken,provider:'fb',fb_exp:tmp.expiresIn,user_id:tmp.userID};
 					console.log(data);
-					if(user.code!='')data.code=user.code;
 		            $.ajax({
 						type: "POST",
 						async: false,
@@ -51,6 +51,7 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 						data: data,
 						success: function(msg){
 							if(msg!='error'){
+								console.log(msg);
 								LoginUser();
 								user.setValues(JSON.parse(msg));
 								ymaps.ready(function () {
