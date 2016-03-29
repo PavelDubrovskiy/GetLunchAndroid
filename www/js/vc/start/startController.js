@@ -40,22 +40,22 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 		        sound: "true"
 		    }
 		});
-		PushNoti.on('registration', function(data) {
-			var data=data;
-			console.log("registration event");
+		PushNoti.on('registration',function(data){
+			var post='';
 			console.log(JSON.stringify(data));
 			localStorage.setItem('pushRegistrationId',data.registrationId);
 			if( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
-				data+='&code='+data.registrationId;
-				data+='&platform=android';
+				post='code='+data.registrationId;
+				post+='&platform=android';
 			}else {
-				data+='&code='+data.registrationId;
-				data+='&platform=ios';
+				post='&code='+data.registrationId;
+				post+='&platform=ios';
 			}
+			console.log(app.config.source+"/api/pull/"+" POST:"+post);
 			$.ajax({
 				type: "POST",
 				url: app.config.source+"/api/pull/",
-				data: data,
+				data: post,
 				success: function(msg){}
 			});
 		});
