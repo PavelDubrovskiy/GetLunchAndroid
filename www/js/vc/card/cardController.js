@@ -73,7 +73,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			autoPanOffset: [20, 0, 0, 40]
 		});
 		
-		map.map.events.add('dblclick', function(e){
+		map.map.events.add('click', function(e){
 			if(!mapFullscreen){
 				view.expandMap(e);
 				mapFullscreen = true;

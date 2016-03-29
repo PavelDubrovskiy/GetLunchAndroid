@@ -456,7 +456,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 	
 	//Проверка на пустые значения
 	function onBoundsChange(){
-		if(app.firstMainLoad){
+		//if(app.firstMainLoad){
 			var x=0;
 			$('#mainCardsList li').each(function(){
 				x++;
@@ -466,7 +466,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			}else{
 				app.firstMainLoad=false;
 			}
-		}
+		//}
 	}
 	return {
 		init: init

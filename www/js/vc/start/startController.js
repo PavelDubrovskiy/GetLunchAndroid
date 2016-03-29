@@ -41,6 +41,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 		    }
 		});
 		PushNoti.on('registration', function(data) {
+			var data=data;
 			console.log("registration event");
 			console.log(JSON.stringify(data));
 			localStorage.setItem('pushRegistrationId',data.registrationId);
@@ -50,16 +51,12 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 			}else {
 				data+='&code='+data.registrationId;
 				data+='&platform=ios';
-				
 			}
 			$.ajax({
 				type: "POST",
-				async: false,
 				url: app.config.source+"/api/pull/",
 				data: data,
-				success: function(msg){
-					forms.showMessage(msg, 'success');
-				}
+				success: function(msg){}
 			});
 		});
 		PushNoti.on('notification', function(data) {
@@ -73,7 +70,7 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	        console.log("push error");
 	        console.log(e);
 	    });
-	}catch(e){console.log("PushNotification error:");console.log(e);}	
+	}catch(e){console.log(e);}	
 	
 	function init(){
 		app.tryConnection(function(){
