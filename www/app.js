@@ -42,7 +42,7 @@ define('app', ['js/router', 'js/m/user'], function(Router, User) {
 			facebookConnectPlugin.login(["email","user_friends"], 
 				function (tmp) {
 					console.log(tmp);					
-					var data={token:tmp.authResponse.accessToken,provider:'fb',fb_exp:tmp.expiresIn,user_id:tmp.userID};
+					var data={token:tmp.authResponse.accessToken,provider:'fb',fb_exp:tmp.authResponse.expiresIn,user_id:tmp.authResponse.userID};
 					console.log(data);
 		            $.ajax({
 						type: "POST",
