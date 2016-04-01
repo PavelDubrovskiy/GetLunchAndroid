@@ -249,7 +249,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 							getLunchBySquareCoords(249);
 							if(userPosition==true && app.latitude!=0) map.setUserPosition([app.latitude, app.longitude], true);
 						}
-					}catch(e){}
+					}catch(e){console.log(e);}
 				}, 
 				function(){
 					console.log('geo fail from main');

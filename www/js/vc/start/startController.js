@@ -75,6 +75,11 @@ define(["app", "js/vc/start/startView", "js/m/user", "js/utilities/fb"], functio
 	function init(){
 		app.tryConnection(function(){
 			app.GAPage('/start/');
+			
+			var countEnter=localStorage.getItem('countEnter');
+			countEnter++;
+			localStorage.setItem('countEnter', countEnter);
+			
 			if(localStorage.getItem('lunchesArray')!==null){
 				var lunchesArray=JSON.parse(localStorage.getItem('lunchesArray'));
 				for(key in lunchesArray){
