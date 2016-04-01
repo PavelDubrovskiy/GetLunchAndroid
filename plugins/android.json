@@ -168,6 +168,9 @@
         },
         "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
+        },
+        "com.lampa.startapp": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         }
     },
     "dependent_plugins": {

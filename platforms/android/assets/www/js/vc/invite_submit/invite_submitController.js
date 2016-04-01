@@ -24,13 +24,17 @@ define(["app","js/vc/invite_submit/invite_submitView", "js/utilities/picker"/*,"
 		//invite.fillSelectedContent();
 		lunch = JSON.parse(localStorage.getItem('lunch'+localStorage.getItem("currentId")));
 		app.GAPage('/restaurant/'+lunch.name+'/'+lunch.id+'/callfriends/');
-		
+		var initTime=lunch.lunchfromStr;
+		var date=new Date();
+		initTime=(date.getHours()+1)+':00';
 		var dateTimePicker = picker.createDateTimePicker('#inviteDatetime', '#invitePicker', {
 			daysCount: 14,
-			minTime: lunch.lunchfromStr,
-			maxTime: lunch.lunchtoStr,
+			//minTime: lunch.lunchfromStr,
+			//maxTime: lunch.lunchtoStr,
+			minTime:'0:00',
+			maxTime:'23:55',
 			minuteStep: 5,
-			initTime: lunch.lunchfromStr,
+			initTime: initTime,
 			checkTime: true
 		});
 		
@@ -47,7 +51,7 @@ define(["app","js/vc/invite_submit/invite_submitView", "js/utilities/picker"/*,"
 	
 	function shareMe() {
 		var text=$('#invitation').val();
-		text+="\n\nGetLunch.ru";
+		text+="\n\nhttp://getlunch.ru/download/";
 		var subject='Приглашаю на ланч в заведение: '+lunch.name;
 		var logo=app.config.source+lunch.logo;
 		var url=app.config.source+'/restaurant/'+lunch.id+'/';

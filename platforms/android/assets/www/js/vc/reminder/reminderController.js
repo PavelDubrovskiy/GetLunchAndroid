@@ -1,6 +1,6 @@
 define(["app", "js/utilities/picker","js/utilities/forms"], function(app, picker, forms) {
 	var $ = Framework7.$;
-	
+	var weekdays={mon:1,tue:2,wed:3,thu:4,fri:5,sat:6,sun:7};
 	function init(query) {
 		var $input = $('#reminderTime');
 		var initTime=false;
@@ -30,49 +30,36 @@ define(["app", "js/utilities/picker","js/utilities/forms"], function(app, picker
 		$('.p_reminder_submit').on('click', function(){
 			var form = document.getElementById('reminderForm');
 			var data=forms.serialize(form);
-			localStorage.setItem('reminderForm',JSON.stringify(forms.serialize(form,'array')));
-			var user=JSON.parse(localStorage.getItem('User'));
-			if(user)data+='&iuser='+user.id;
-			var pushRegistrationId=localStorage.getItem('pushRegistrationId');
-			try{
-				if( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
-					data+='&code='+pushRegistrationId;
-					data+='&platform=android';
-					$.ajax({
-						type: "POST",
-						async: false,
-						url: app.config.source+"/api/pull/",
-						data: data,
-						success: function(msg){
-							forms.showMessage(msg, 'success');
-						}
-					});
-				}else {
-					data+='&code='+pushRegistrationId;
-					data+='&platform=ios';
-					$.ajax({
-						type: "POST",
-						async: false,
-						url: app.config.source+"/api/pull/",
-						data: data,
-						success: function(msg){
-							forms.showMessage(msg, 'success');
-						}
-					});
+			var dataArr=forms.serialize(form,'array');			
+			localStorage.setItem('reminderForm',JSON.stringify(dataArr));
+			var every=0;
+			if($.isArray(dataArr.weekly)) every='week';
+			//var user=JSON.parse(localStorage.getItem('User'));
+			//if(user)data+='&iuser='+user.id;			
+			//var pushRegistrationId=localStorage.getItem('pushRegistrationId');
+			var date = new Date();
+			var time=dataArr.time.split(':');
+			if($.isArray(dataArr['days[]'])){
+				for(var i in dataArr['days[]']){
+					var d=new Date(date.getFullYear(),date.getMonth(),date.getDate()+weekdays[dataArr['days[]'][i]]-1,time[0],time[1],'00');
+					try{
+						cordova.plugins.notification.local.schedule({
+						    id: i,
+						    title: "GetLunch",
+						    text: "Пора есть!",
+						    at: d,
+						    every: every,
+						    //sound: "file://sounds/reminder.mp3",
+						    icon: "/i/120pt.png",
+						});
+					}catch(e){console.log(e);}
 				}
-			}catch(e){		
-				console.log(e);
-				data+='&code=1111111';
-				data+='&platform=android';
-				$.ajax({
-					type: "POST",
-					async: false,
-					url: app.config.source+"/api/pull/",
-					data: data,
-					success: function(msg){
-						forms.showMessage(msg, 'success');
-					}
-				});
+				forms.showMessage('Напоминание установлено!', 'success');
+			}else{
+				try{
+					cordova.plugins.notification.local.cancel([1,2,3,4,5,6,7], function () {}, scope);
+				}catch(e){console.log(e);}
+				forms.showMessage('Напоминание отключено', 'success');
 			}
 		});
 		$('.b_reminder_checkbox').on('click', function(){

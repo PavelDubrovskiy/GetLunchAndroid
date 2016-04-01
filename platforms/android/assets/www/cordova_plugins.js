@@ -181,6 +181,13 @@ module.exports = [
             "cordova.plugins.notification.local.core",
             "plugin.notification.local.core"
         ]
+    },
+    {
+        "file": "plugins/com.lampa.startapp/www/startApp.js",
+        "id": "com.lampa.startapp.startapp",
+        "merges": [
+            "navigator.startApp"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -200,7 +207,8 @@ module.exports.metadata =
     "phonegap-plugin-push": "1.6.0",
     "cordova-plugin-facebook4": "1.7.0",
     "cordova-plugin-app-event": "1.2.0",
-    "de.appplant.cordova.plugin.local-notification": "0.8.4"
+    "de.appplant.cordova.plugin.local-notification": "0.8.4",
+    "com.lampa.startapp": "0.0.7"
 };
 // BOTTOM OF METADATA
 });

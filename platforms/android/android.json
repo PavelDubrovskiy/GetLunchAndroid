@@ -95,6 +95,10 @@
                         {
                             "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"startApp\"><param name=\"android-package\" value=\"com.lampa.startapp.startApp\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -317,6 +321,9 @@
         },
         "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
+        },
+        "com.lampa.startapp": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
         }
     },
     "dependent_plugins": {},
@@ -502,6 +509,13 @@
                 "cordova.plugins.notification.local.core",
                 "plugin.notification.local.core"
             ]
+        },
+        {
+            "file": "plugins/com.lampa.startapp/www/startApp.js",
+            "id": "com.lampa.startapp.startapp",
+            "merges": [
+                "navigator.startApp"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -519,6 +533,7 @@
         "phonegap-plugin-push": "1.6.0",
         "cordova-plugin-facebook4": "1.7.0",
         "cordova-plugin-app-event": "1.2.0",
-        "de.appplant.cordova.plugin.local-notification": "0.8.4"
+        "de.appplant.cordova.plugin.local-notification": "0.8.4",
+        "com.lampa.startapp": "0.0.7"
     }
 }
