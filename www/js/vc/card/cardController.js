@@ -152,7 +152,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		});
 		$('.m_card_navigator').click(function(){
 			try{
-				navigator.startApp.start([["ru.yandex.yandexnavi", "ru.yandex.yandexnavi.action.BUILD_ROUTE_ON_MAP"],[{'lat_from':app.latitude,'lon_from':app.longitude,'lat_to':lunch.latitude,'lon_to':lunch.longitude}]],
+				navigator.startApp.start([["action", "ru.yandex.yandexnavi.action.BUILD_ROUTE_ON_MAP"],[{'lat_from':app.latitude},{'lon_from':app.longitude},{'lat_to':lunch.latitude},{'lon_to':lunch.longitude}]],
 					function(message) {}, 
 					function(error){console.log(error);}
 				);
@@ -184,9 +184,9 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		}
 	}
 	function callSomeone(){
-		console.log('callSomeone ('+lunch.phone+');');
-		//navigator.callphone.call(function () {}, function (error) { showErrorDialog(errors.call); log(error); }, lunch.phone );
-		navigator.callphone.call(function () {}, function (error) {}, lunch.phone );
+		try{
+			navigator.startApp.start([["action", "CALL"], ["tel:"+lunch.phone]]);
+		}catch(e){console.log(e);}
 	}
 	function findMe() {
 		app.GAEvent('map', 'click', 'target');
@@ -194,7 +194,6 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	}
 	function createWay(routingMode){
 		var routingMode=routingMode;
-		console.log(routingMode);
 		if(app.cardMultiRoute!='') map.map.geoObjects.remove(app.cardMultiRoute);
 		app.cardMultiRoute = new ymaps.multiRouter.MultiRoute({
 	        referencePoints: [

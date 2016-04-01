@@ -1282,6 +1282,7 @@ a{
 .b_phone{
 	font-size: 20px;
 	text-align: center;
+	color: #5d8900;
 }
 
 .b_phone + .b_site{
@@ -2599,7 +2600,7 @@ label.label-radio input[type="checkbox"]:checked ~ .item-inner:after, label.labe
 	display:inline-block;
 	width:30px;
 	height:30px;
-	background: url(/i/star.png) no-repeat;
+	background: url(../i/star.png) no-repeat;
 	margin-right: 7px;
 }
 .modal-star:LAST-CHILD{margin-right: 0px;}

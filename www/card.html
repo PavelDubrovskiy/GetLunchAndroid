@@ -117,9 +117,8 @@
 				{{/if}}
 				
 				<div class="b_content-block b_contact">
-					{{#if phone}}<div class="b_phone"><a href="tel:{{phone}}">{{phone}}</a></div>{{/if}}
+					{{#if phone}}<div class="b_phone" id="callSomeone">{{phone}}</div>{{/if}}
 					{{#if site}}
-							<!--{{#if phone}}<a href="#" class="button b_btn" id="callSomeone">Позвонить</a>{{/if}}-->
 							<a href="#" class="b_site" id="externalSite">{{site}}</a>
 					{{/if}}
 				</div>
