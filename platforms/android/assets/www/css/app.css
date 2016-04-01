@@ -2607,10 +2607,17 @@ label.label-radio input[type="checkbox"]:checked ~ .item-inner:after, label.labe
 .modal-button-small{font-size: 11px;}
 
 /*---------auto/masstransit-----------*/
-.m_map_center{
+.m_map_center_top{
 	position: absolute;
 	z-index: 1;
 	top: 47px;
+	width:100%;
+	text-align: center;
+}
+.m_map_center_bottom{
+	position: absolute;
+	z-index: 2;
+	margin: -51px 0 0 0;
 	width:100%;
 	text-align: center;
 }
@@ -2661,7 +2668,17 @@ label.label-radio input[type="checkbox"]:checked ~ .item-inner:after, label.labe
 .st_checked.m_card_auto:after{
 	background-position: -20px -22px;
 }
-
+.m_card_navigator{
+	display:inline-block;
+	background-color: #FFF;	
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	box-shadow: 0px 1px 1px 0px rgba(51, 52, 52, 0.4);
+	-webkit-box-shadow: 0px 1px 1px 0px rgba(51, 52, 52, 0.4);
+	width: 170px;
+	height: 41px;
+	line-height: 41px;
+}
 
 
 .st_hidden{display:none};

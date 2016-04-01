@@ -136,8 +136,9 @@
     },
     "com.lampa.startapp": {
         "source": {
-            "type": "registry",
-            "id": "com.lampa.startapp"
+            "type": "git",
+            "url": "https://github.com/lampaa/com.lampa.startapp",
+            "subdir": "."
         },
         "is_top_level": true,
         "variables": {}

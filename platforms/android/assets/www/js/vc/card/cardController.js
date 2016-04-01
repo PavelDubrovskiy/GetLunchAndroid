@@ -140,16 +140,27 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		$('.b_map_btn.m_card_findme').click(function(){findMe();});
 		$('.m_card_masstransit').click(function(){
 			$('.m_card_auto').removeClass('st_checked');
-			$('.m_card_masstransit').addClass('st_checked');			
+			$('.m_card_masstransit').addClass('st_checked');
+			$('.m_card_navigator').addClass('st_hidden');
 			createWay('masstransit');			
 		});
 		$('.m_card_auto').click(function(){
 			$('.m_card_masstransit').removeClass('st_checked');
 			$('.m_card_auto').addClass('st_checked');
+			$('.m_card_navigator').removeClass('st_hidden');
 			createWay('auto');			
 		});
+		$('.m_card_navigator').click(function(){
+			try{
+				navigator.startApp.start([["ru.yandex.yandexnavi", "ru.yandex.yandexnavi.action.BUILD_ROUTE_ON_MAP"],[{'lat_from':app.latitude,'lon_from':app.longitude,'lat_to':lunch.latitude,'lon_to':lunch.longitude}]],
+					function(message) {}, 
+					function(error){console.log(error);}
+				);
+			}catch(e){console.log(e);}
+			
+		});
 		$('.m_card_reducemap').click(function(){
-			controlReduceMap()
+			controlReduceMap();
 		});
 		
 	}
@@ -207,9 +218,12 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			$('.m_card_masstransit').removeClass('st_hidden');
 			$('.b_map_btn.m_card_zoomin').removeClass('st_hidden');
 			$('.b_map_btn.m_card_zoomout').removeClass('st_hidden');
-			$('.b_map_btn.m_card_findme').removeClass('st_hidden');			
+			$('.b_map_btn.m_card_findme').removeClass('st_hidden');
 			$('.m_card_back').css('visibility','hidden');
 			$('.m_card_reducemap').css('visibility','visible');
+			if($('.m_card_auto').hasClass('st_checked')){
+				$('.m_card_navigator').removeClass('st_hidden');
+			}
 			findMe();
 		}else{
 			view.reduceMap(map);
@@ -220,6 +234,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 			$('.b_map_btn.m_card_zoomin').addClass('st_hidden');
 			$('.b_map_btn.m_card_zoomout').addClass('st_hidden');
 			$('.b_map_btn.m_card_findme').addClass('st_hidden');
+			$('.m_card_navigator').addClass('st_hidden');
 			$('.m_card_reducemap').css('visibility','hidden');
 			$('.m_card_back').css('visibility','visible');
 			findMe();

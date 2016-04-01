@@ -208,7 +208,7 @@ module.exports.metadata =
     "cordova-plugin-facebook4": "1.7.0",
     "cordova-plugin-app-event": "1.2.0",
     "de.appplant.cordova.plugin.local-notification": "0.8.4",
-    "com.lampa.startapp": "0.0.7"
+    "com.lampa.startapp": "0.0.6"
 };
 // BOTTOM OF METADATA
 });

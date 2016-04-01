@@ -1,13 +1,14 @@
 cordova.define("com.lampa.startapp.startapp", function(require, exports, module) {
-cordova.define("com.lampa.startapp.startApp", function(require, exports, module) {
 /**
 	com.lampa.startapp
 	https://github.com/lampaa/com.lampa.startapp
 	
-	Phonegap plugin for check or launch other application in android device (iOS support).
-	bug tracker: https://github.com/lampaa/com.lampa.startapp/issues
+	Phonegap 3 plugin for check or launch other application in android device (iOS support).
+	bug tracker: https://github.com/lampaa/org.apache.cordova.startapp/issues
+	
+	!! THIS SCRIPT FILE TO CORDOVA 3.5.*
+	If you are using a version lower than 3.5, read this theme: https://github.com/lampaa/org.apache.cordova.startapp/issues/5#issuecomment-49974214
 */
-
 var exec = require('cordova/exec');
 
 module.exports = {
@@ -32,6 +33,5 @@ module.exports = {
 		exec(completeCallback, errorCallback, "startApp", "start", (typeof message === 'string') ? [message] : message);
 	}	
 }
-});
 
 });
