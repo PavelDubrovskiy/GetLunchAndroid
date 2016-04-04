@@ -137,7 +137,7 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		//Управление картой		
 		$('.b_map_btn.m_card_zoomin').click(function(){map.zoomIn()});
 		$('.b_map_btn.m_card_zoomout').click(function(){map.zoomOut()});
-		$('.b_map_btn.m_card_findme').click(function(){findMe();});
+		$('.b_map_btn.m_card_geolocation').click(function(){findMe();});
 		$('.m_card_masstransit').click(function(){
 			$('.m_card_auto').removeClass('st_checked');
 			$('.m_card_masstransit').addClass('st_checked');
@@ -210,33 +210,47 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 	}
 	function controlReduceMap(){
 		if(!mapFullscreen){
+			$('.navbar').hide();
+			$('#lunchPage').css('padding-top','0');
 			view.expandMap(map);
 			mapFullscreen = true;
-			$('.p_card_header span').text('Построение маршрута');
+			$('.b_compass').css('top','8px');
 			$('.m_card_auto').removeClass('st_hidden');
 			$('.m_card_masstransit').removeClass('st_hidden');
 			$('.b_map_btn.m_card_zoomin').removeClass('st_hidden');
 			$('.b_map_btn.m_card_zoomout').removeClass('st_hidden');
-			$('.b_map_btn.m_card_findme').removeClass('st_hidden');
-			$('.m_card_back').css('visibility','hidden');
-			$('.m_card_reducemap').css('visibility','visible');
+			$('.b_map_btn.m_card_geolocation').removeClass('st_hidden');
+			$('.m_card_reducemap').removeClass('st_hidden');
 			if($('.m_card_auto').hasClass('st_checked')){
 				$('.m_card_navigator').removeClass('st_hidden');
-			}
-			findMe();
+				createWay('auto');
+			}else{
+				createWay('masstransit');
+			}			
 		}else{
+			$('#lunchPage').css('padding-top','44px');
+			$('.navbar').show();
 			view.reduceMap(map);
 			mapFullscreen = false;
-			$('.p_card_header span').text(lunch.name);
+			$('.b_compass').css('top','47px');
 			$('.m_card_auto').addClass('st_hidden');
 			$('.m_card_masstransit').addClass('st_hidden');
 			$('.b_map_btn.m_card_zoomin').addClass('st_hidden');
 			$('.b_map_btn.m_card_zoomout').addClass('st_hidden');
-			$('.b_map_btn.m_card_findme').addClass('st_hidden');
+			$('.b_map_btn.m_card_geolocation').addClass('st_hidden');
 			$('.m_card_navigator').addClass('st_hidden');
-			$('.m_card_reducemap').css('visibility','hidden');
-			$('.m_card_back').css('visibility','visible');
-			findMe();
+			$('.m_card_reducemap').addClass('st_hidden');
+			if(lunch.longitude>app.longitude){
+				map.setBounds([
+					[lunch.latitude, app.longitude],
+					[app.latitude, lunch.longitude]
+				]);
+			}else{
+				map.setBounds([
+					[lunch.latitude, lunch.longitude],
+					[app.latitude, app.longitude]
+				]);
+			}
 		}
 	}
 	return {
