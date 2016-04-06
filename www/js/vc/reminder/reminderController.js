@@ -32,7 +32,7 @@ define(["app", "js/utilities/picker","js/utilities/forms"], function(app, picker
 			var data=forms.serialize(form);
 			var dataArr=forms.serialize(form,'array');			
 			localStorage.setItem('reminderForm',JSON.stringify(dataArr));
-			var every=0;
+			var every='';
 			if($.isArray(dataArr.weekly)) every='week';
 			//var user=JSON.parse(localStorage.getItem('User'));
 			//if(user)data+='&iuser='+user.id;			
@@ -49,7 +49,7 @@ define(["app", "js/utilities/picker","js/utilities/forms"], function(app, picker
 						    text: "Пора есть!",
 						    at: d,
 						    every: every,
-						    //sound: "file://sounds/reminder.mp3",
+						    sound: "",
 						    icon: "/i/120pt.png",
 						});
 					}catch(e){console.log(e);}
