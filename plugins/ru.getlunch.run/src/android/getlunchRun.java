@@ -7,8 +7,8 @@
 */
 package ru.getlunch.run;
 
-import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -56,10 +56,10 @@ public class getlunchRun extends CordovaPlugin {
 				yIntent = new Intent("android.intent.action.ACTION_VIEW");
 				yIntent.setData(Uri.parse("market://details?id=ru.yandex.yandexnavi"));
 			} else {
-				yIntent.putExtra("lat_from", (Double)coordsJson.get("lat_from"));
-				yIntent.putExtra("lon_from", (Double)coordsJson.get("lon_from"));
-				yIntent.putExtra("lat_to", (Double)coordsJson.get("lat_to"));
-				yIntent.putExtra("lon_to", (Double)coordsJson.get("lon_to"));
+				yIntent.putExtra("lat_from", coordsJson.getString("lat_from"));
+				yIntent.putExtra("lon_from", coordsJson.getString("lon_from"));
+				yIntent.putExtra("lat_to", coordsJson.getString("lat_to"));
+				yIntent.putExtra("lon_to", coordsJson.getString("lon_to"));
 			}
 			this.cordova.getActivity().startActivity(yIntent);
 			callback.success();

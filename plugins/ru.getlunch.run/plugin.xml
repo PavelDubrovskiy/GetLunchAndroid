@@ -16,7 +16,7 @@
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="GetLunchRun">
+            <feature name="getlunchRun">
                 <param name="android-package" value="ru.getlunch.run.getlunchRun"/>
             </feature>
         </config-file>

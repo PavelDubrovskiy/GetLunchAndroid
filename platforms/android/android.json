@@ -97,7 +97,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"GetLunchRun\"><param name=\"android-package\" value=\"ru.getlunch.run.getlunchRun\" /></feature>",
+                            "xml": "<feature name=\"getlunchRun\"><param name=\"android-package\" value=\"ru.getlunch.run.getlunchRun\" /></feature>",
                             "count": 1
                         }
                     ]
