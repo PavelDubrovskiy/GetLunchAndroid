@@ -1,0 +1,30 @@
+{
+  "name": "ru.getlunch.run",
+  "version": "0.0.2",
+  "description": "Cordova plugin for GetLunch.",
+  "cordova": {
+    "id": "ru.getlunch.run",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PavelDubrovskiy/ru.getlunch.run.git"
+  },
+  "keywords": [
+    "cordova",
+    "GetLunch",
+    "Run",
+    "cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "PavelDubrovskiy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PavelDubrovskiy/ru.getlunch.run/issues"
+  },
+  "homepage": "https://github.com/PavelDubrovskiy/ru.getlunch.run#readme"
+}

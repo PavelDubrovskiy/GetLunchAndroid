@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+	id="ru.getlunch.run"
+	version="0.0.2">
+
+    <name>GetLunchNative</name>
+    <description>Cordova plugin for GetLunch.</description>
+    <license>MIT</license>
+    <keywords>Cordova,GetLunch,Run</keywords>
+
+    <js-module src="www/getlunchRun.js" name="getlunchRun">
+        <merges target="getlunchRun" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="GetLunchRun">
+                <param name="android-package" value="ru.getlunch.run.getlunchRun"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/getlunchRun.java" target-dir="src/ru/getlunch/getlunchRun" />
+    </platform>
+
+
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+			<feature name="getlunchRun">
+				<param name="ios-package" value="getlunchRun"/>
+			</feature>
+		</config-file>
+		
+		<header-file src="src/ios/getlunchRun.h"/>
+		<source-file src="src/ios/getlunchRun.m"/>
+	</platform>
+
+
+</plugin>

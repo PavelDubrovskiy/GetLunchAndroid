@@ -145,9 +145,6 @@
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "ru.one_touch.getlunch"
-        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
@@ -169,7 +166,10 @@
         "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         },
-        "com.lampa.startapp": {
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "ru.one_touch.getlunch"
+        },
+        "ru.getlunch.run": {
             "PACKAGE_NAME": "ru.one_touch.getlunch"
         }
     },

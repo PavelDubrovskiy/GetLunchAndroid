@@ -118,14 +118,6 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-        "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "clobbers": [
-            "cordova.InAppBrowser.open",
-            "window.open"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-whitelist/whitelist.js",
         "id": "cordova-plugin-whitelist.whitelist",
         "runs": true
@@ -183,10 +175,18 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/com.lampa.startapp/www/startApp.js",
-        "id": "com.lampa.startapp.startapp",
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "file": "plugins/ru.getlunch.run/www/getlunchRun.js",
+        "id": "ru.getlunch.run.getlunchRun",
         "merges": [
-            "navigator.startApp"
+            "getlunchRun"
         ]
     }
 ];
@@ -200,7 +200,6 @@ module.exports.metadata =
     "cordova-plugin-device-motion": "1.2.0",
     "cordova-plugin-device-orientation": "1.0.2",
     "cordova-plugin-geolocation": "2.1.0",
-    "cordova-plugin-inappbrowser": "1.2.1",
     "cordova-plugin-whitelist": "1.2.1",
     "cordova-plugin-x-socialsharing": "5.0.11",
     "com.adobe.plugins.GAPlugin": "2.4.0",
@@ -208,7 +207,8 @@ module.exports.metadata =
     "cordova-plugin-facebook4": "1.7.0",
     "cordova-plugin-app-event": "1.2.0",
     "de.appplant.cordova.plugin.local-notification": "0.8.4",
-    "com.lampa.startapp": "0.0.6"
+    "cordova-plugin-inappbrowser": "1.3.0",
+    "ru.getlunch.run": "0.0.2"
 };
 // BOTTOM OF METADATA
 });

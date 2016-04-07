@@ -63,14 +63,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-inappbrowser": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-inappbrowser@~1.2.0"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
@@ -134,10 +126,18 @@
         "is_top_level": false,
         "variables": {}
     },
-    "com.lampa.startapp": {
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "ru.getlunch.run": {
         "source": {
             "type": "git",
-            "url": "https://github.com/lampaa/com.lampa.startapp",
+            "url": "https://github.com/PavelDubrovskiy/ru.getlunch.run.git",
             "subdir": "."
         },
         "is_top_level": true,
