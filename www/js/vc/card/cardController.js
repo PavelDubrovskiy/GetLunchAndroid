@@ -153,11 +153,11 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		$('.m_card_navigator').click(function(){
 			try{
 				if( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
-					getlunchRun.yandexnavi(['lat_from':app.latitude,'lon_from':app.longitude,'lat_to':lunch.latitude,'lon_to':lunch.longitude],
+					navigator.getlunchRun.yandexnavi([{'lat_from':app.latitude,'lon_from':app.longitude,'lat_to':lunch.latitude,'lon_to':lunch.longitude}],
 						function(message) {console.log(message);}, function(error){console.log(error);}
 					);
 				}else{
-					getlunchRun.yandexnavi("yandexnavi://build_route_on_map?lat_from="+app.latitude+"&lon_from="+app.longitude+"&lat_to="+lunch.latitude+"&lon_to="+lunch.longitude+"");
+					navigator.getlunchRun.yandexnavi("yandexnavi://build_route_on_map?lat_from="+app.latitude+"&lon_from="+app.longitude+"&lat_to="+lunch.latitude+"&lon_to="+lunch.longitude+"");
 				}
 			}catch(e){console.log(e);}
 		});
