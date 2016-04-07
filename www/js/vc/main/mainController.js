@@ -222,6 +222,7 @@ define(["app", "js/vc/main/mainView", "js/utilities/forms", "js/utilities/map", 
 			getLunchBySquareCoords(222);
 		});
 		geolocation();
+		if(app.latitude!=0) map.setUserPosition([app.latitude, app.longitude], true);
 		//setTimeout(getNearestLunches, 400);
 		//setTimeout(getLunchBySquareCoords, 400);
 		
