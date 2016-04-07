@@ -58,4 +58,5 @@
     <permission android:name="ru.one_touch.getlunch.permission.C2D_MESSAGE" android:protectionLevel="signature" />
     <uses-permission android:name="ru.one_touch.getlunch.permission.C2D_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 </manifest>

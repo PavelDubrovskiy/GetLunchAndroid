@@ -22,4 +22,17 @@
 	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+- (void)telcall:(CDVInvokedUrlCommand*)command {
+
+    CDVPluginResult* pluginResult = nil;
+    NSString* scheme = [command.arguments objectAtIndex:0];
+	NSURL* naviURL = [NSURL URLWithString:@"tel:"+scheme];
+	
+	[[UIApplication sharedApplication] openURL:naviURL];
+	pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:(true)];
+	
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+	
+}
+
 @end

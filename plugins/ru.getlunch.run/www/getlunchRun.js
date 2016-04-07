@@ -17,5 +17,8 @@ module.exports = {
 	 */
 	yandexnavi: function(coords, completeCallback, errorCallback) {
 		exec(completeCallback, errorCallback, "getlunchRun", "yandexnavi", [JSON.stringify(coords)])
+	},
+	telcall: function(phone, completeCallback, errorCallback) {
+		exec(completeCallback, errorCallback, "getlunchRun", "telcall", [phone])
 	}
 }

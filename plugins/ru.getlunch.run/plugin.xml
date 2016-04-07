@@ -20,7 +20,11 @@
                 <param name="android-package" value="ru.getlunch.run.getlunchRun"/>
             </feature>
         </config-file>
-
+		
+		<config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.CALL_PHONE" />
+		</config-file>
+		
         <source-file src="src/android/getlunchRun.java" target-dir="src/ru/getlunch/getlunchRun" />
     </platform>
 

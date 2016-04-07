@@ -37,8 +37,9 @@ public class getlunchRun extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		if(action.equals("yandexnavi")) {
 			this.yandexnavi(args.getString(0), callbackContext);
-		}
-		
+		}else if(action.equals("telcall")) {
+			this.telcall(args.getString(0), callbackContext);
+		}		
 		return true;
     }
 
@@ -67,5 +68,14 @@ public class getlunchRun extends CordovaPlugin {
 			callback.error(e.toString());
 		}
 	}
-
+	public void telcall(String phone, CallbackContext callback) {
+		try {
+			Intent yIntent = new Intent("android.intent.action.CALL");
+			yIntent.setData(Uri.parse("tel:"+phone));
+			this.cordova.getActivity().startActivity(yIntent);
+			callback.success();
+		} catch (Exception e) {
+			callback.error(e.toString());
+		}
+	}
 }
