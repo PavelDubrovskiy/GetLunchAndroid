@@ -152,21 +152,14 @@ define(["app", "js/vc/card/cardView", "js/utilities/forms", "js/utilities/map", 
 		});
 		$('.m_card_navigator').click(function(){
 			try{
-				if( device.platform == 'android' || device.platform == 'Android'){
-					navigator.startApp.set({
-							"action":"ru.yandex.yandexnavi.action.BUILD_ROUTE_ON_MAP"
-						}, {
-							'lat_from':app.latitude,
-							'lon_from':app.longitude,
-							'lat_to':lunch.latitude,
-							'lon_to':lunch.longitude
-						}
-					).start();
+				if( device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos" ){
+					getlunchRun.yandexnavi(['lat_from':app.latitude,'lon_from':app.longitude,'lat_to':lunch.latitude,'lon_to':lunch.longitude],
+						function(message) {console.log(message);}, function(error){console.log(error);}
+					);
 				}else{
-					navigator.startApp.set("yandexnavi://build_route_on_map?lat_from="+app.latitude+"&lon_from="+app.longitude+"&lat_to="+lunch.latitude+"&lon_to="+lunch.longitude+"").start();
+					getlunchRun.yandexnavi("yandexnavi://build_route_on_map?lat_from="+app.latitude+"&lon_from="+app.longitude+"&lat_to="+lunch.latitude+"&lon_to="+lunch.longitude+"");
 				}
 			}catch(e){console.log(e);}
-			
 		});
 		$('.m_card_reducemap').click(function(){
 			controlReduceMap();

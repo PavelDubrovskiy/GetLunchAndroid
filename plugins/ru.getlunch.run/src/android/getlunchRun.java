@@ -42,24 +42,24 @@ public class getlunchRun extends CordovaPlugin {
 		return true;
     }
 
-	public void yandexnavi(JSONArray coords, CallbackContext callback) {
+	public void yandexnavi(String coords, CallbackContext callback) {
 		try {
+			JSONObject coordsJson = new JSONObject(coords);
 			Intent yIntent = new Intent("ru.yandex.yandexnavi.action.BUILD_ROUTE_ON_MAP");
 			yIntent.setPackage("ru.yandex.yandexnavi");
 			
 			PackageManager pm = this.cordova.getActivity().getApplicationContext().getPackageManager();
-			List<ResolveInfo> infos = pm.queryIntentActivities(yIntent, 0);
 			
 			// Проверяем, установлен ли Яндекс.Навигатор
-			if (infos == null || infos.size() == 0) {
+			if (pm.queryIntentActivities(yIntent, 0) == null || pm.queryIntentActivities(yIntent, 0).size() == 0) {
 				// Если нет - будем открывать страничку Навигатора в Google Play
-				yIntent = new Intent('android.intent.action.ACTION_VIEW');
+				yIntent = new Intent("android.intent.action.ACTION_VIEW");
 				yIntent.setData(Uri.parse("market://details?id=ru.yandex.yandexnavi"));
 			} else {
-				yIntent.putExtra("lat_from", coords["lat_from"]);
-				yIntent.putExtra("lon_from", coords["lon_from"]);
-				yIntent.putExtra("lat_to", coords["lat_to"]);
-				yIntent.putExtra("lon_to", coords["lon_to"]);
+				yIntent.putExtra("lat_from", (Double)coordsJson.get("lat_from"));
+				yIntent.putExtra("lon_from", (Double)coordsJson.get("lon_from"));
+				yIntent.putExtra("lat_to", (Double)coordsJson.get("lat_to"));
+				yIntent.putExtra("lon_to", (Double)coordsJson.get("lon_to"));
 			}
 			this.cordova.getActivity().startActivity(yIntent);
 			callback.success();
