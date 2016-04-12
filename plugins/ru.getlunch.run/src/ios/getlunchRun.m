@@ -26,7 +26,8 @@
 
     CDVPluginResult* pluginResult = nil;
     NSString* scheme = [command.arguments objectAtIndex:0];
-	NSURL* naviURL = [NSURL URLWithString:@"tel:"+scheme];
+	NSString *result = [NSString stringWithFormat:@"%@%@", @"tel:", scheme];
+	NSURL* naviURL = [NSURL URLWithString:result];
 	
 	[[UIApplication sharedApplication] openURL:naviURL];
 	pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:(true)];
